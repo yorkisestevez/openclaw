@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Connect Meta — OpenClaw Docs</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head><body><div class="docs-wrap">
+<aside class="docs-nav"><a class="docs-brand" href="/"><div class="emblem">O</div><div><div class="name">OPENCLAW</div><div class="sub">DOCS</div></div></a><h4>Get Started</h4><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/requirements.html">Requirements</a></li><li><a href="/docs/install-windows.html">Install · Windows</a></li><li><a href="/docs/install-mac.html">Install · Mac</a></li></ul><h4>Connect</h4><ul><li><a href="/docs/oauth-google.html">Google (Gmail + Calendar)</a></li><li><a href="/docs/oauth-meta.html" class="active">Meta (FB + Instagram)</a></li><li><a href="/docs/cms-connect.html">Your CMS / Email Tool</a></li></ul><h4>Use</h4><ul><li><a href="/docs/command-deck.html">Command Deck Tour</a></li><li><a href="/docs/approvals.html">Approval Flow</a></li><li><a href="/docs/brand-voice.html">Brand Voice Setup</a></li></ul><h4>Help</h4><ul><li><a href="/docs/troubleshooting.html">Troubleshooting</a></li><li><a href="/docs/faq.html">FAQ</a></li><li><a href="/#waitlist">Waitlist →</a></li></ul></aside>
+<main class="docs-main">
+<div class="kicker">· CONNECT · META ·</div>
+<h1>Connect Meta (Facebook + Instagram)</h1>
+
+<p>About 10 minutes. You'll create a Meta developer app, grant page + instagram permissions, and paste a permanent page token.</p>
+<div class="callout"><strong>Quick path:</strong> if you've already set up a Meta app for any marketing tool, you can reuse its app ID + secret — just add a new OAuth redirect.</div>
+<h2>Step 1 — Create a Meta Developer app</h2>
+<ol>
+  <li>Go to <a href="https://developers.facebook.com/apps/">developers.facebook.com/apps</a> → <strong>Create App</strong></li>
+  <li>Use case: <strong>Other</strong> → Type: <strong>Business</strong></li>
+  <li>Name: <code>OpenClaw Marketing</code> → Contact email → pick your Business portfolio (Golden Maple, etc.)</li>
+</ol>
+<h2>Step 2 — Add Facebook Login product</h2>
+<ol>
+  <li>Left sidebar → <strong>Add product</strong> → <strong>Facebook Login</strong></li>
+  <li>Settings → Valid OAuth Redirect URIs → add <code>https://www.facebook.com/connect/login_success.html</code></li>
+  <li>Save</li>
+</ol>
+<h2>Step 3 — Add your domain</h2>
+<p>Basic Settings → App Domains → add <code>facebook.com</code>. This allows the Graph Explorer redirect.</p>
+<h2>Step 4 — Grab app credentials</h2>
+<p>App Settings → Basic. Copy the <strong>App ID</strong>. Click <strong>Show</strong> on App Secret and copy that too (needs your FB password).</p>
+<h2>Step 5 — Generate a short-lived token</h2>
+<ol>
+  <li><a href="https://developers.facebook.com/tools/explorer/">Graph API Explorer</a></li>
+  <li>Meta App: your app name</li>
+  <li>User or Page: <strong>User Token</strong></li>
+  <li>Add permissions: <code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>pages_manage_posts</code>, <code>pages_manage_metadata</code>, <code>instagram_basic</code>, <code>instagram_content_publish</code>, <code>business_management</code></li>
+  <li>Click <strong>Generate Access Token</strong> → Choose account → Approve all scopes → Select your Business portfolio</li>
+  <li>Copy the resulting token (starts with <code>EAA</code>)</li>
+</ol>
+<h2>Step 6 — Exchange for a permanent page token</h2>
+<pre><code>setx META_APP_ID "&lt;your-app-id&gt;"
+setx META_APP_SECRET "&lt;your-app-secret&gt;"
+
+cd skills/meta-toolkit
+node meta.js refresh "&lt;the-short-lived-token-you-just-copied&gt;"</code></pre>
+<p>This exchanges the short-lived token for a 60-day user token, then pulls a <strong>permanent page token</strong> (never expires until revoked). All three tokens save to <code>credentials/.env</code> and Windows env vars.</p>
+<h2>Verify</h2>
+<pre><code>node meta.js status
+node meta.js verify</code></pre>
+<p>You should see your FB Page + IG Business account with follower counts.</p>
+<h3>Next</h3>
+<p><a href="/docs/cms-connect.html">Connect your CMS / email tool →</a></p>
+<footer class="docs-foot">OPENCLAW DOCS · © 2026</footer>
+</main></div>
+<script src="/chat-widget.js" defer></script>
+</body></html>

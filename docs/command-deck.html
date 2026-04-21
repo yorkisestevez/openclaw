@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Command Deck Tour — OpenClaw Docs</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head><body><div class="docs-wrap">
+<aside class="docs-nav"><a class="docs-brand" href="/"><div class="emblem">O</div><div><div class="name">OPENCLAW</div><div class="sub">DOCS</div></div></a><h4>Get Started</h4><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/requirements.html">Requirements</a></li><li><a href="/docs/install-windows.html">Install · Windows</a></li><li><a href="/docs/install-mac.html">Install · Mac</a></li></ul><h4>Connect</h4><ul><li><a href="/docs/oauth-google.html">Google (Gmail + Calendar)</a></li><li><a href="/docs/oauth-meta.html">Meta (FB + Instagram)</a></li><li><a href="/docs/cms-connect.html">Your CMS / Email Tool</a></li></ul><h4>Use</h4><ul><li><a href="/docs/command-deck.html" class="active">Command Deck Tour</a></li><li><a href="/docs/approvals.html">Approval Flow</a></li><li><a href="/docs/brand-voice.html">Brand Voice Setup</a></li></ul><h4>Help</h4><ul><li><a href="/docs/troubleshooting.html">Troubleshooting</a></li><li><a href="/docs/faq.html">FAQ</a></li><li><a href="/#waitlist">Waitlist →</a></li></ul></aside>
+<main class="docs-main">
+<div class="kicker">· USE ·</div>
+<h1>Command Deck tour</h1>
+
+<p>The Command Deck is your mission control. It shows every agent in your party, what they're doing right now, and lets you dispatch them on missions with one click.</p>
+<h2>Anatomy</h2>
+<ul>
+  <li><strong>Top bar</strong> — current client, active agents, queue count, daily budget spent</li>
+  <li><strong>Tenant tabs</strong> — switch between clients (Agency tier only)</li>
+  <li><strong>Views</strong> — <code>ROSTER</code> (the 13 wired agents) or <code>LIBRARY</code> (the full 80-agent catalog)</li>
+  <li><strong>Dispatch panel</strong> — select agents + set mission + launch</li>
+  <li><strong>Live feed</strong> — real-time event stream (like a combat log)</li>
+</ul>
+<h2>Dispatching your first mission</h2>
+<ol>
+  <li>Click any agent card to add them to the party (cards glow gold)</li>
+  <li>Pick a preset payload from the chips, OR type a JSON payload</li>
+  <li>Click <strong>⚔ LAUNCH</strong></li>
+  <li>Watch the Live Feed for real-time progress</li>
+</ol>
+<h2>Agent XP</h2>
+<p>Each successful run earns an agent XP. Level-ups are cosmetic but help you spot which agents do the most lifting. Success rate tracks done ÷ (done + error).</p>
+<h2>Approval flow</h2>
+<p>If an agent's type is in <code>require_approval_types</code> (see <code>clients/&lt;slug&gt;/config.json</code>), it sits in <strong>AWAITING</strong> until you tap ✅. Everything else runs autonomously. See <a href="/docs/approvals.html">Approval Flow</a>.</p>
+<h2>Library view</h2>
+<p>Click <strong>📚 LIBRARY</strong>. 80 skills across REVENUE, CONTENT, ADS, INTEL, etc. Filter chips show live counts. Cards with ✅ READY can be dispatched via <strong>RUN NOW</strong>.</p>
+<footer class="docs-foot">OPENCLAW DOCS · © 2026</footer>
+</main></div>
+<script src="/chat-widget.js" defer></script>
+</body></html>

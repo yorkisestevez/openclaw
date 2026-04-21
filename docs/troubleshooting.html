@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Troubleshooting — OpenClaw Docs</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head><body><div class="docs-wrap">
+<aside class="docs-nav"><a class="docs-brand" href="/"><div class="emblem">O</div><div><div class="name">OPENCLAW</div><div class="sub">DOCS</div></div></a><h4>Get Started</h4><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/requirements.html">Requirements</a></li><li><a href="/docs/install-windows.html">Install · Windows</a></li><li><a href="/docs/install-mac.html">Install · Mac</a></li></ul><h4>Connect</h4><ul><li><a href="/docs/oauth-google.html">Google (Gmail + Calendar)</a></li><li><a href="/docs/oauth-meta.html">Meta (FB + Instagram)</a></li><li><a href="/docs/cms-connect.html">Your CMS / Email Tool</a></li></ul><h4>Use</h4><ul><li><a href="/docs/command-deck.html">Command Deck Tour</a></li><li><a href="/docs/approvals.html">Approval Flow</a></li><li><a href="/docs/brand-voice.html">Brand Voice Setup</a></li></ul><h4>Help</h4><ul><li><a href="/docs/troubleshooting.html" class="active">Troubleshooting</a></li><li><a href="/docs/faq.html">FAQ</a></li><li><a href="/#waitlist">Waitlist →</a></li></ul></aside>
+<main class="docs-main">
+<div class="kicker">· HELP ·</div>
+<h1>Troubleshooting</h1>
+
+<p>The most common install and runtime errors, with exact fixes. Hit the chatbot for anything not listed.</p>
+
+<h2>Install errors</h2>
+<h3>npm install fails with "Python not found"</h3>
+<p>Some dependencies need Python for native builds. Windows: install <a href="https://www.python.org/downloads/">Python 3.11</a> and re-run. Mac: <code>brew install python</code>.</p>
+
+<h3>ollama pull stalls at 0%</h3>
+<p>Usually firewall or VPN. Disable VPN, try again. If Corporate firewall, ask IT to whitelist <code>*.ollama.com</code>.</p>
+
+<h3>"port 5055 already in use"</h3>
+<p>Another process is on that port. Find and kill, or use a different port: <code>node server.js 5056</code>.</p>
+
+<h2>OAuth errors</h2>
+<h3>Google: "app not verified / access blocked"</h3>
+<p>You haven't added yourself as a test user. Go to <a href="https://console.cloud.google.com/auth/audience">Google Auth Platform → Audience → Test users → Add</a>.</p>
+
+<h3>Google: "redirect_uri_mismatch"</h3>
+<p>You created a Web app client instead of Desktop. Create a new OAuth client with type = <strong>Desktop app</strong>.</p>
+
+<h3>Meta: "Can't load URL"</h3>
+<p>Redirect URI isn't in the Meta app's Valid OAuth Redirects. Add <code>https://www.facebook.com/connect/login_success.html</code> in Facebook Login settings, and add <code>facebook.com</code> to App Domains in Basic Settings.</p>
+
+<h3>Meta: /me/accounts returns empty</h3>
+<p>Missing <code>business_management</code> scope. Re-run Graph Explorer and check that permission during auth. Also confirm your user is an admin on the Page + the Page's Business Portfolio.</p>
+
+<h2>Runtime errors</h2>
+<h3>Ollama: "model 'yorkis-brain' not found"</h3>
+<p>The custom models aren't built on your install. They're aliases. The router resolves them to <code>qwen3.5:9b</code> — make sure that's pulled: <code>ollama pull qwen3.5:9b</code>.</p>
+
+<h3>"ENOSPC: no space left"</h3>
+<p>Disk full from Ollama models. Free 20 GB, or move Ollama models: <code>OLLAMA_MODELS=D:/ollama</code> env var.</p>
+
+<h3>Command Deck shows 0 agents</h3>
+<p>You're on the wrong client. Click the correct tenant tab at the top. Or the <code>clients/</code> folder is missing — restore from git.</p>
+
+<h3>FB post: HTTP 190 "Session has expired"</h3>
+<p>Page token expired (rare — they're ~14 months). Re-run Graph Explorer for a new short-lived token, then <code>node meta.js refresh &lt;new-token&gt;</code>.</p>
+
+<h2>Still stuck?</h2>
+<ul>
+  <li>💬 Chatbot (bottom-right) — instant</li>
+  <li>📧 <a href="mailto:openclaw@yorkisestevez.com">openclaw@yorkisestevez.com</a> — within 4 hours ET</li>
+  <li>📞 Phone (in footer) — business hours ET</li>
+</ul>
+<footer class="docs-foot">OPENCLAW DOCS · © 2026</footer>
+</main></div>
+<script src="/chat-widget.js" defer></script>
+</body></html>

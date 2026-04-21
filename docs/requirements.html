@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Requirements — OpenClaw Docs</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head><body><div class="docs-wrap">
+<aside class="docs-nav">
+  <a class="docs-brand" href="/"><div class="emblem">O</div><div><div class="name">OPENCLAW</div><div class="sub">DOCS</div></div></a>
+  <h4>Get Started</h4><ul>
+    <li><a href="/docs/">Overview</a></li>
+    <li><a href="/docs/requirements.html" class="active">Requirements</a></li>
+    <li><a href="/docs/install-windows.html">Install · Windows</a></li>
+    <li><a href="/docs/install-mac.html">Install · Mac</a></li>
+  </ul><h4>Connect</h4><ul>
+    <li><a href="/docs/oauth-google.html">Google (Gmail + Calendar)</a></li>
+    <li><a href="/docs/oauth-meta.html">Meta (FB + Instagram)</a></li>
+    <li><a href="/docs/cms-connect.html">Your CMS / Email Tool</a></li>
+  </ul><h4>Use</h4><ul>
+    <li><a href="/docs/command-deck.html">Command Deck Tour</a></li>
+    <li><a href="/docs/approvals.html">Approval Flow</a></li>
+    <li><a href="/docs/brand-voice.html">Brand Voice Setup</a></li>
+  </ul><h4>Help</h4><ul>
+    <li><a href="/docs/troubleshooting.html">Troubleshooting</a></li>
+    <li><a href="/docs/faq.html">FAQ</a></li>
+    <li><a href="/#waitlist">Waitlist →</a></li>
+  </ul>
+</aside>
+<main class="docs-main">
+  <div class="kicker">· GET STARTED ·</div>
+  <h1>Requirements</h1>
+  <p>OpenClaw runs the heavy LLM work locally on your machine, so your hardware matters. Here's what you need.</p>
+
+  <h2>Operating system</h2>
+  <table>
+    <thead><tr><th>OS</th><th>Supported</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Windows 10 / 11 (x64)</td><td>✅ Primary</td><td>Most tested. PowerShell used for env setup.</td></tr>
+      <tr><td>macOS 13+ (Apple Silicon)</td><td>✅ Supported</td><td>M1/M2/M3. Intel Macs work but slower.</td></tr>
+      <tr><td>Linux (Ubuntu 22+)</td><td>⚠️ Unsupported</td><td>Should work, not tested. Use at own risk.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Hardware minimums</h2>
+  <table>
+    <thead><tr><th></th><th>Minimum</th><th>Recommended</th></tr></thead>
+    <tbody>
+      <tr><td>RAM</td><td>16 GB</td><td>32 GB</td></tr>
+      <tr><td>GPU VRAM</td><td>8 GB (RTX 3060 or better)</td><td>12 GB+ (RTX 4070 / M2 Pro / M3 Pro)</td></tr>
+      <tr><td>Disk</td><td>30 GB free</td><td>100 GB free (for models + logs)</td></tr>
+      <tr><td>CPU</td><td>4 cores</td><td>8+ cores</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>No GPU?</strong> You can still run OpenClaw — local CPU inference on small models works for basic tasks. Heavy content drafting and intel tasks will escalate to Claude (budget ~$30–$50/mo). Performance drops ~10x vs GPU.
+  </div>
+
+  <h2>Software prerequisites</h2>
+  <ul>
+    <li><strong>Node.js 18+</strong> — <a href="https://nodejs.org">nodejs.org</a> (LTS installer)</li>
+    <li><strong>Git</strong> — <a href="https://git-scm.com">git-scm.com</a> (or just use GitHub Desktop)</li>
+    <li><strong>Ollama</strong> — <a href="https://ollama.com/download">ollama.com/download</a></li>
+    <li><strong>Chrome or Edge</strong> — for the Command Deck dashboard and OAuth flows</li>
+  </ul>
+
+  <h2>Cloud accounts you'll connect</h2>
+  <p>You don't need all of these on day one. Connect what applies to your business:</p>
+  <ul>
+    <li><strong>Google account</strong> — for Gmail, Calendar, Google Business Profile</li>
+    <li><strong>Meta (Facebook) account with a Page</strong> — for FB + Instagram posting</li>
+    <li><strong>WordPress / Webflow / Squarespace login</strong> — if you want blog posts auto-published</li>
+    <li><strong>Mailchimp / Klaviyo account</strong> — if you want email campaigns sent automatically</li>
+    <li><strong>Telegram account</strong> — for approval notifications (free)</li>
+  </ul>
+
+  <h2>Budget assumptions</h2>
+  <p>Local inference is $0 per run. You only pay for:</p>
+  <ul>
+    <li>Claude escalation for hard tasks — <strong>$0 to $25/day</strong> (you set the cap)</li>
+    <li>Meta / Google Ads spend — same as before, OpenClaw doesn't markup</li>
+    <li>OpenClaw monthly subscription — $197 Starter, $497 Pro, $1,497 Agency</li>
+  </ul>
+
+  <h2>Check your machine now</h2>
+  <p>Run this quick check from PowerShell (Windows) or Terminal (Mac):</p>
+  <pre><code>node --version
+npm --version
+git --version
+ollama --version</code></pre>
+  <p>All four should print a version. If any say "command not found," install them first.</p>
+
+  <h3>Next</h3>
+  <p>Ready? Pick your OS: <a href="/docs/install-windows.html">Windows install</a> · <a href="/docs/install-mac.html">Mac install</a></p>
+
+  <footer class="docs-foot">OPENCLAW DOCS · © 2026</footer>
+</main></div>
+<script src="/chat-widget.js" defer></script>
+</body></html>

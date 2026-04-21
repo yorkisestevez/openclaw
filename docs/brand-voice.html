@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Brand Voice — OpenClaw Docs</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head><body><div class="docs-wrap">
+<aside class="docs-nav"><a class="docs-brand" href="/"><div class="emblem">O</div><div><div class="name">OPENCLAW</div><div class="sub">DOCS</div></div></a><h4>Get Started</h4><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/requirements.html">Requirements</a></li><li><a href="/docs/install-windows.html">Install · Windows</a></li><li><a href="/docs/install-mac.html">Install · Mac</a></li></ul><h4>Connect</h4><ul><li><a href="/docs/oauth-google.html">Google (Gmail + Calendar)</a></li><li><a href="/docs/oauth-meta.html">Meta (FB + Instagram)</a></li><li><a href="/docs/cms-connect.html">Your CMS / Email Tool</a></li></ul><h4>Use</h4><ul><li><a href="/docs/command-deck.html">Command Deck Tour</a></li><li><a href="/docs/approvals.html">Approval Flow</a></li><li><a href="/docs/brand-voice.html" class="active">Brand Voice Setup</a></li></ul><h4>Help</h4><ul><li><a href="/docs/troubleshooting.html">Troubleshooting</a></li><li><a href="/docs/faq.html">FAQ</a></li><li><a href="/#waitlist">Waitlist →</a></li></ul></aside>
+<main class="docs-main">
+<div class="kicker">· USE ·</div>
+<h1>Brand voice learning</h1>
+
+<p>Every time you approve a draft, that approved text becomes a voice sample the next agent reads. Your marketing gets more "you" every week.</p>
+<h2>Where samples live</h2>
+<pre><code>clients/&lt;client-slug&gt;/voice-samples/
+├── approved/
+│   ├── 2026-04-21_invoice-TEST-001.txt
+│   └── 2026-04-28_fb-spring-cleanup.txt
+└── README.md</code></pre>
+<h2>Seed your voice (day 1)</h2>
+<ol>
+  <li>Copy 5–10 of your best recent emails or blog posts into <code>voice-samples/approved/</code></li>
+  <li>Name them anything — the loader reads every <code>.txt</code> or <code>.md</code></li>
+  <li>Cap: ~6 KB per file, 20 KB total for the context. Paste your best stuff, not everything.</li>
+</ol>
+<h2>Seed via BRAIN.md</h2>
+<p>The brand-voice loader also reads <code>wiki/business/projects/&lt;slug&gt;/BRAIN.md</code>. Add a "Voice & Tone" section to your project's BRAIN and it flows in:</p>
+<pre><code># Voice & Tone
+- Confident, not salesy
+- Plain English, no jargon
+- Always name the specific product/neighborhood
+- Never promise timelines we can't keep</code></pre>
+<h2>Compound effect</h2>
+<p>By month 3, with 30–50 approved drafts in the library, the COPYWRITER and EMAIL-MANAGER agents write material a blind reader can't tell you didn't write yourself.</p>
+<footer class="docs-foot">OPENCLAW DOCS · © 2026</footer>
+</main></div>
+<script src="/chat-widget.js" defer></script>
+</body></html>

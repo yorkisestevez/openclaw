@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Install on Windows — OpenClaw Docs</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head><body><div class="docs-wrap">
+<aside class="docs-nav">
+  <a class="docs-brand" href="/"><div class="emblem">O</div><div><div class="name">OPENCLAW</div><div class="sub">DOCS</div></div></a>
+  <h4>Get Started</h4><ul>
+    <li><a href="/docs/">Overview</a></li>
+    <li><a href="/docs/requirements.html">Requirements</a></li>
+    <li><a href="/docs/install-windows.html" class="active">Install · Windows</a></li>
+    <li><a href="/docs/install-mac.html">Install · Mac</a></li>
+  </ul><h4>Connect</h4><ul>
+    <li><a href="/docs/oauth-google.html">Google (Gmail + Calendar)</a></li>
+    <li><a href="/docs/oauth-meta.html">Meta (FB + Instagram)</a></li>
+    <li><a href="/docs/cms-connect.html">Your CMS / Email Tool</a></li>
+  </ul><h4>Use</h4><ul>
+    <li><a href="/docs/command-deck.html">Command Deck Tour</a></li>
+    <li><a href="/docs/approvals.html">Approval Flow</a></li>
+    <li><a href="/docs/brand-voice.html">Brand Voice Setup</a></li>
+  </ul><h4>Help</h4><ul>
+    <li><a href="/docs/troubleshooting.html">Troubleshooting</a></li>
+    <li><a href="/docs/faq.html">FAQ</a></li>
+    <li><a href="/#waitlist">Waitlist →</a></li>
+  </ul>
+</aside>
+<main class="docs-main">
+  <div class="kicker">· GET STARTED · WINDOWS ·</div>
+  <h1>Install on Windows</h1>
+  <p>About 20–30 minutes. We'll install the prerequisites, clone OpenClaw, download the local models, and fire up the Command Deck.</p>
+
+  <div class="callout warn">
+    <strong>Tip:</strong> Keep this page open on one monitor while you install. If you hit an error, hit the chatbot at the bottom-right — it's trained on these exact steps.
+  </div>
+
+  <h2>Step 1 — Install prerequisites</h2>
+  <p>Download and run each installer with defaults:</p>
+  <ul>
+    <li><a href="https://nodejs.org">Node.js 18+ LTS</a> — click the left big green button</li>
+    <li><a href="https://git-scm.com/download/win">Git for Windows</a> — accept all defaults</li>
+    <li><a href="https://ollama.com/download/windows">Ollama for Windows</a></li>
+  </ul>
+  <p>After install, reboot. Then open <strong>PowerShell</strong> (Start menu → type "PowerShell") and verify:</p>
+  <pre><code>node --version
+git --version
+ollama --version</code></pre>
+  <p>Each should print a version like <code>v20.10.0</code>. If any say "not recognized," reboot wasn't enough — close PowerShell, reopen, and try again.</p>
+
+  <h2>Step 2 — Pull the local models</h2>
+  <p>Ollama needs to download the language models. ~12 GB total. Run each command and wait for each to finish:</p>
+  <pre><code>ollama pull qwen3.5:9b
+ollama pull qwen2.5-coder:7b-instruct
+ollama pull deepseek-r1:8b
+ollama pull nomic-embed-text</code></pre>
+  <p>This is the longest step — expect 10–30 min depending on your connection. Models are cached; future updates only pull deltas.</p>
+
+  <h2>Step 3 — Clone OpenClaw</h2>
+  <p>In PowerShell:</p>
+  <pre><code>cd $HOME
+git clone https://github.com/yorkisestevez/openclaw.git .openclaw
+cd .openclaw
+npm install</code></pre>
+  <p>The <code>npm install</code> step will take 2–5 minutes. It installs Playwright, Puppeteer, and a few other libraries.</p>
+
+  <div class="callout warn">
+    <strong>Public repo note:</strong> the GitHub repo only contains the landing page and public documentation. Closed-beta customers get a separate install bundle via their waitlist email. During Phase 1 beta, replace Step 3 with the bundle link we send you.
+  </div>
+
+  <h2>Step 4 — First-run configuration</h2>
+  <p>Still in PowerShell inside <code>.openclaw</code>:</p>
+  <pre><code>node scripts/requirements-check.js</code></pre>
+  <p>This prints GO / NO-GO on every prerequisite. Fix any ❌ before continuing.</p>
+
+  <h2>Step 5 — Start the Command Deck</h2>
+  <pre><code>cd skills\meta-orchestrator\trials\command-deck
+node server.js 5055</code></pre>
+  <p>Open <a href="http://localhost:5055" target="_blank">http://localhost:5055</a>. You should see the Command Deck with 13 agents at Level 1.</p>
+
+  <h2>Step 6 — Connect your first account</h2>
+  <p>Next page: <a href="/docs/oauth-google.html">Connect Google (Gmail + Calendar)</a>. Takes 5 minutes. After that you'll dispatch your first agent.</p>
+
+  <div class="callout">
+    <strong>Stuck?</strong> Open the chatbot (bottom-right), paste your exact error, get an answer in seconds. Or call the phone number in the footer.
+  </div>
+
+  <footer class="docs-foot">OPENCLAW DOCS · © 2026</footer>
+</main></div>
+<script src="/chat-widget.js" defer></script>
+</body></html>

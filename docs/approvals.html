@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Approval Flow — OpenClaw Docs</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head><body><div class="docs-wrap">
+<aside class="docs-nav"><a class="docs-brand" href="/"><div class="emblem">O</div><div><div class="name">OPENCLAW</div><div class="sub">DOCS</div></div></a><h4>Get Started</h4><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/requirements.html">Requirements</a></li><li><a href="/docs/install-windows.html">Install · Windows</a></li><li><a href="/docs/install-mac.html">Install · Mac</a></li></ul><h4>Connect</h4><ul><li><a href="/docs/oauth-google.html">Google (Gmail + Calendar)</a></li><li><a href="/docs/oauth-meta.html">Meta (FB + Instagram)</a></li><li><a href="/docs/cms-connect.html">Your CMS / Email Tool</a></li></ul><h4>Use</h4><ul><li><a href="/docs/command-deck.html">Command Deck Tour</a></li><li><a href="/docs/approvals.html" class="active">Approval Flow</a></li><li><a href="/docs/brand-voice.html">Brand Voice Setup</a></li></ul><h4>Help</h4><ul><li><a href="/docs/troubleshooting.html">Troubleshooting</a></li><li><a href="/docs/faq.html">FAQ</a></li><li><a href="/#waitlist">Waitlist →</a></li></ul></aside>
+<main class="docs-main">
+<div class="kicker">· USE ·</div>
+<h1>Approval flow</h1>
+
+<p>OpenClaw's approval flow is the difference between "AI that helps" and "AI that acts on your behalf." Every action type falls into one of two buckets.</p>
+<h2>Auto-approved (read-only or safe)</h2>
+<ul>
+  <li>INBOX-MANAGER — triages mail, doesn't reply</li>
+  <li>FOLLOW-UP-SPECIALIST — finds stale threads, doesn't send</li>
+  <li>MEETING-PREP — reads calendar + email, drafts briefings</li>
+  <li>COMPETITIVE-ANALYST — scrapes, doesn't post</li>
+</ul>
+<h2>Approval required (anything that sends)</h2>
+<ul>
+  <li>SOCIAL-MANAGER — posting to FB/IG</li>
+  <li>EMAIL-DRAFTER — creating Gmail drafts (not sending; still approval-gated)</li>
+  <li>INVOICE-COLLECTOR — drafting invoice follow-ups</li>
+  <li>GBP-MANAGER — Google Business Profile posts</li>
+  <li>ADS-MANAGER — Meta/Google ad publishing</li>
+</ul>
+<h2>Approve via Telegram</h2>
+<p>When an agent drops an action in the approval queue, your @YorkisEstevez_bot DMs you with ✅ / ❌ / ✏️ buttons. Tap from phone. Done.</p>
+<h2>Approve via Command Deck</h2>
+<p>Queue panel shows all AWAITING actions with inline <strong>OK</strong> / <strong>X</strong> buttons. One click.</p>
+<h2>Approve via CLI</h2>
+<pre><code>cd skills/meta-orchestrator/trials
+node fire.js &lt;client&gt; approve &lt;task_id&gt;</code></pre>
+<h2>Configuring what needs approval</h2>
+<p>Edit <code>clients/&lt;slug&gt;/config.json</code>:</p>
+<pre><code>{
+  "approval": {
+    "require_approval_types": ["fb_post", "ig_post", "invoice_chase", "gmail_draft"],
+    "auto_approve_types": ["inbox_triage", "follow_up_track", "meeting_prep"]
+  }
+}</code></pre>
+<p>Move types between the arrays as you trust each agent more (or less).</p>
+<footer class="docs-foot">OPENCLAW DOCS · © 2026</footer>
+</main></div>
+<script src="/chat-widget.js" defer></script>
+</body></html>

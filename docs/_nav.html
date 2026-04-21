@@ -1,0 +1,45 @@
+<aside class="docs-nav">
+  <a class="docs-brand" href="/">
+    <div class="emblem">O</div>
+    <div><div class="name">OPENCLAW</div><div class="sub">DOCS</div></div>
+  </a>
+  <h4>Get Started</h4>
+  <ul>
+    <li><a href="/docs/" data-nav="index">Overview</a></li>
+    <li><a href="/docs/requirements.html" data-nav="requirements">Requirements</a></li>
+    <li><a href="/docs/install-windows.html" data-nav="install-windows">Install · Windows</a></li>
+    <li><a href="/docs/install-mac.html" data-nav="install-mac">Install · Mac</a></li>
+  </ul>
+  <h4>Connect</h4>
+  <ul>
+    <li><a href="/docs/oauth-google.html" data-nav="oauth-google">Google (Gmail + Calendar)</a></li>
+    <li><a href="/docs/oauth-meta.html" data-nav="oauth-meta">Meta (FB + Instagram)</a></li>
+    <li><a href="/docs/cms-connect.html" data-nav="cms-connect">Your CMS / Email Tool</a></li>
+  </ul>
+  <h4>Use</h4>
+  <ul>
+    <li><a href="/docs/command-deck.html" data-nav="command-deck">Command Deck Tour</a></li>
+    <li><a href="/docs/approvals.html" data-nav="approvals">Approval Flow</a></li>
+    <li><a href="/docs/brand-voice.html" data-nav="brand-voice">Brand Voice Setup</a></li>
+  </ul>
+  <h4>Help</h4>
+  <ul>
+    <li><a href="/docs/troubleshooting.html" data-nav="troubleshooting">Troubleshooting</a></li>
+    <li><a href="/docs/faq.html" data-nav="faq">FAQ</a></li>
+    <li><a href="/#waitlist">Waitlist →</a></li>
+  </ul>
+  <h4>Contact</h4>
+  <ul>
+    <li><a href="mailto:openclaw@yorkisestevez.com">Email support</a></li>
+    <li><a href="#" onclick="document.getElementById('openclaw-chat-bubble')?.click();return false">Chat with AI →</a></li>
+  </ul>
+</aside>
+<script>
+  // Highlight active nav item
+  (function(){
+    const p = location.pathname.replace(/^\/docs\/?/,'').replace(/\.html$/,'') || 'index';
+    document.querySelectorAll('[data-nav]').forEach(a => {
+      if (a.dataset.nav === p) a.classList.add('active');
+    });
+  })();
+</script>

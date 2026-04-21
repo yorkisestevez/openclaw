@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Install on Mac — OpenClaw Docs</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head><body><div class="docs-wrap">
+<aside class="docs-nav">
+  <a class="docs-brand" href="/"><div class="emblem">O</div><div><div class="name">OPENCLAW</div><div class="sub">DOCS</div></div></a>
+  <h4>Get Started</h4><ul>
+    <li><a href="/docs/">Overview</a></li>
+    <li><a href="/docs/requirements.html">Requirements</a></li>
+    <li><a href="/docs/install-windows.html">Install · Windows</a></li>
+    <li><a href="/docs/install-mac.html" class="active">Install · Mac</a></li>
+  </ul><h4>Connect</h4><ul>
+    <li><a href="/docs/oauth-google.html">Google (Gmail + Calendar)</a></li>
+    <li><a href="/docs/oauth-meta.html">Meta (FB + Instagram)</a></li>
+    <li><a href="/docs/cms-connect.html">Your CMS / Email Tool</a></li>
+  </ul><h4>Use</h4><ul>
+    <li><a href="/docs/command-deck.html">Command Deck Tour</a></li>
+    <li><a href="/docs/approvals.html">Approval Flow</a></li>
+    <li><a href="/docs/brand-voice.html">Brand Voice Setup</a></li>
+  </ul><h4>Help</h4><ul>
+    <li><a href="/docs/troubleshooting.html">Troubleshooting</a></li>
+    <li><a href="/docs/faq.html">FAQ</a></li>
+    <li><a href="/#waitlist">Waitlist →</a></li>
+  </ul>
+</aside>
+<main class="docs-main">
+  <div class="kicker">· GET STARTED · MAC ·</div>
+  <h1>Install on Mac</h1>
+  <p>About 20–30 minutes. Homebrew makes the prerequisites one line.</p>
+
+  <h2>Step 1 — Homebrew + prerequisites</h2>
+  <p>If Homebrew isn't installed:</p>
+  <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+  <p>Then install everything:</p>
+  <pre><code>brew install node git
+brew install ollama
+brew services start ollama</code></pre>
+  <p>Verify:</p>
+  <pre><code>node --version
+git --version
+ollama --version</code></pre>
+
+  <h2>Step 2 — Pull local models</h2>
+  <pre><code>ollama pull qwen3.5:9b
+ollama pull qwen2.5-coder:7b-instruct
+ollama pull deepseek-r1:8b
+ollama pull nomic-embed-text</code></pre>
+  <p>~12 GB total. Grab a coffee.</p>
+
+  <h2>Step 3 — Clone OpenClaw</h2>
+  <pre><code>cd ~
+git clone https://github.com/yorkisestevez/openclaw.git .openclaw
+cd .openclaw
+npm install</code></pre>
+
+  <div class="callout warn">
+    <strong>Beta note:</strong> public repo has landing + docs only. Install bundle comes via your waitlist email.
+  </div>
+
+  <h2>Step 4 — Verify</h2>
+  <pre><code>node scripts/requirements-check.js</code></pre>
+
+  <h2>Step 5 — Start the Command Deck</h2>
+  <pre><code>cd skills/meta-orchestrator/trials/command-deck
+node server.js 5055</code></pre>
+  <p>Open <a href="http://localhost:5055">http://localhost:5055</a>.</p>
+
+  <h2>Apple Silicon notes</h2>
+  <ul>
+    <li>M1/M2/M3 Macs use Metal for Ollama inference — no additional setup</li>
+    <li>Unified memory means 16 GB Mac ≈ 16 GB VRAM for small models. Recommended: 32 GB for qwen3.5:9b comfort.</li>
+    <li>macOS might prompt you to allow <code>node</code> network access on first run. Click Allow.</li>
+  </ul>
+
+  <h3>Next</h3>
+  <p><a href="/docs/oauth-google.html">Connect Google →</a></p>
+
+  <footer class="docs-foot">OPENCLAW DOCS · © 2026</footer>
+</main></div>
+<script src="/chat-widget.js" defer></script>
+</body></html>

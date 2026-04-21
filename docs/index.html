@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>OpenClaw Docs — Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head><body>
+<div class="docs-wrap">
+<aside class="docs-nav">
+  <a class="docs-brand" href="/"><div class="emblem">O</div><div><div class="name">OPENCLAW</div><div class="sub">DOCS</div></div></a>
+  <h4>Get Started</h4>
+  <ul>
+    <li><a href="/docs/" class="active">Overview</a></li>
+    <li><a href="/docs/requirements.html">Requirements</a></li>
+    <li><a href="/docs/install-windows.html">Install · Windows</a></li>
+    <li><a href="/docs/install-mac.html">Install · Mac</a></li>
+  </ul>
+  <h4>Connect</h4>
+  <ul>
+    <li><a href="/docs/oauth-google.html">Google (Gmail + Calendar)</a></li>
+    <li><a href="/docs/oauth-meta.html">Meta (FB + Instagram)</a></li>
+    <li><a href="/docs/cms-connect.html">Your CMS / Email Tool</a></li>
+  </ul>
+  <h4>Use</h4>
+  <ul>
+    <li><a href="/docs/command-deck.html">Command Deck Tour</a></li>
+    <li><a href="/docs/approvals.html">Approval Flow</a></li>
+    <li><a href="/docs/brand-voice.html">Brand Voice Setup</a></li>
+  </ul>
+  <h4>Help</h4>
+  <ul>
+    <li><a href="/docs/troubleshooting.html">Troubleshooting</a></li>
+    <li><a href="/docs/faq.html">FAQ</a></li>
+    <li><a href="/#waitlist">Waitlist →</a></li>
+  </ul>
+</aside>
+
+<main class="docs-main">
+  <div class="kicker">· DOCS ·</div>
+  <h1>Start here.</h1>
+  <p>OpenClaw is a local-first AI marketing-ops toolkit. 13+ specialized agents — copywriter, social manager, review responder, invoice collector, and more — running on your own computer and publishing through your existing stack.</p>
+
+  <p>These docs walk you through installing OpenClaw on your own hardware, connecting your Google / Meta / CMS / email accounts, and running your first autonomous marketing cycle.</p>
+
+  <div class="callout">
+    <strong>New here?</strong> The fastest path: <a href="/docs/requirements.html">check requirements</a> → <a href="/docs/install-windows.html">install on Windows</a> (or <a href="/docs/install-mac.html">Mac</a>) → <a href="/docs/oauth-google.html">connect Google</a>. About 20 minutes end to end.
+  </div>
+
+  <h2>What you're building</h2>
+  <p>By the end of setup you'll have:</p>
+  <ul>
+    <li>A <strong>Command Deck</strong> at <code>http://localhost:5055</code> showing every agent in your party, their XP, and the live queue</li>
+    <li><strong>4 read-only agents</strong> running autonomously: inbox triage, follow-up tracking, meeting prep, competitive intel</li>
+    <li><strong>9 publishing agents</strong> that wait for your ✅ before sending — Gmail drafts, FB/IG posts, calendar events, review replies, invoice chasers</li>
+    <li>A <strong>per-client voice sample library</strong> that compounds every time you approve a draft</li>
+  </ul>
+
+  <h2>Three tiers, your choice</h2>
+  <table>
+    <thead><tr><th>Path</th><th>Time</th><th>When to pick it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>DIY install</strong></td><td>~30 min</td><td>You're comfortable with a terminal and reading error messages</td></tr>
+      <tr><td><strong>DIY with help</strong></td><td>~45 min</td><td>You'd follow docs but want the chatbot / phone open while you install</td></tr>
+      <tr><td><strong>Done-for-you</strong></td><td>~30 min on a Zoom</td><td>You run a business, not a PC. We screenshare + install + connect. $497 one-time.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How it runs</h2>
+  <p>OpenClaw is a local Node.js process with a SQLite queue and a Command Deck dashboard. Your local LLM (Ollama with qwen / deepseek / gemma) does 90% of the heavy lifting at zero per-run cost. Anything that needs premium reasoning — complex legal drafting, long-document synthesis — escalates to Claude at a <em>hard-capped daily spend</em> you set.</p>
+
+  <p>Your content, email, client lists, voice samples — never leave your machine. Only the specific prompt that escalates to Claude leaves, and we show you exactly what's being sent.</p>
+
+  <h2>Stuck anywhere?</h2>
+  <ul>
+    <li>💬 <strong>Chatbot</strong> (bottom-right of every page) — trained on these docs, answers in seconds</li>
+    <li>📞 <strong>Phone</strong> — real business number, answered during business hours ET</li>
+    <li>📧 <strong>Email</strong> — <a href="mailto:openclaw@yorkisestevez.com">openclaw@yorkisestevez.com</a></li>
+  </ul>
+
+  <footer class="docs-foot">OPENCLAW DOCS · © 2026 · <a href="/">openclaw.yorkisestevez.com</a></footer>
+</main>
+</div>
+<script src="/chat-widget.js" defer></script>
+</body></html>
