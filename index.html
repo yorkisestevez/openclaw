@@ -8,588 +8,895 @@
 <meta property="og:title" content="OpenClaw — Marketing team in your pocket"/>
 <meta property="og:description" content="13+ AI specialists for your content, social, email, ads, SEO and reviews. Priced like software. Acts like an agency."/>
 <meta property="og:type" content="website"/>
-<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800;900&family=Unbounded:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root{
-    --bg-deep:#0a0508; --bg:#12090d; --panel:#1b0f15; --panel-2:#251421; --line:#3a1e29;
-    --burgundy:#6B1E2E; --burgundy-bright:#a33148; --gold:#D4AF63; --gold-bright:#f0c97d;
-    --bone:#F2EEE7; --mute:#8a7580; --ok:#7dd88a;
+    --bg-deep:#050308;
+    --bg:#0a0610;
+    --panel:#14091a;
+    --panel-2:#1e0d28;
+    --line:rgba(212,175,99,.15);
+    --line-hot:rgba(212,175,99,.4);
+    --burgundy:#6B1E2E;
+    --burgundy-bright:#a33148;
+    --gold:#D4AF63;
+    --gold-bright:#f0c97d;
+    --bone:#F2EEE7;
+    --mute:#9080a0;
+    --neon:#b08cff;
+    --neon-cyan:#5ee3ff;
+    --ok:#7dd88a;
   }
-  html,body{background:var(--bg-deep);color:var(--bone);font-family:'JetBrains Mono',ui-monospace,monospace;margin:0}
+  *{box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  html{scroll-behavior:smooth}
+  html,body{background:var(--bg-deep);color:var(--bone);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;margin:0;overflow-x:hidden}
+
+  /* ── Global animated background ── */
   body{
+    position:relative;
     background:
-      radial-gradient(ellipse at 20% 0%,rgba(107,30,46,.4) 0%,transparent 50%),
-      radial-gradient(ellipse at 80% 100%,rgba(212,175,99,.08) 0%,transparent 50%),
+      radial-gradient(ellipse 1200px 800px at 10% -10%,rgba(107,30,46,.5) 0%,transparent 50%),
+      radial-gradient(ellipse 1000px 600px at 90% 30%,rgba(176,140,255,.15) 0%,transparent 50%),
+      radial-gradient(ellipse 800px 600px at 50% 100%,rgba(212,175,99,.12) 0%,transparent 50%),
       var(--bg-deep);
     background-attachment:fixed;
+    min-height:100vh;
   }
   body::before{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-    background:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0,rgba(255,255,255,.015) 1px,transparent 1px,transparent 3px);
+    content:"";position:fixed;inset:-50%;pointer-events:none;z-index:0;
+    background:conic-gradient(from 45deg at 50% 50%,
+      rgba(212,175,99,.04) 0deg,
+      rgba(107,30,46,.08) 90deg,
+      rgba(176,140,255,.04) 180deg,
+      rgba(94,227,255,.03) 270deg,
+      rgba(212,175,99,.04) 360deg);
+    animation:spin-slow 60s linear infinite;
+    opacity:.7;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background:
+      repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0,rgba(255,255,255,.01) 1px,transparent 1px,transparent 3px),
+      repeating-linear-gradient(90deg,transparent 0 60px,rgba(212,175,99,.015) 60px 61px);
     mix-blend-mode:overlay;
   }
-  .display{font-family:'Unbounded',sans-serif;letter-spacing:.02em}
-  .kicker{font-family:'Unbounded';font-weight:700;font-size:11px;letter-spacing:.4em;color:var(--gold)}
+  @keyframes spin-slow{to{transform:rotate(360deg)}}
+
+  /* ── Typography ── */
+  .display{font-family:'Unbounded',sans-serif;letter-spacing:-.02em;font-weight:900;line-height:1}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  .kicker{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
+  .gradient-text{
+    background:linear-gradient(135deg,var(--bone) 0%,var(--gold) 40%,var(--gold-bright) 60%,var(--bone) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    background-size:200% 100%;animation:shimmer 6s ease-in-out infinite;
+  }
+  @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+  /* ── Buttons ── */
   .btn-primary{
-    display:inline-block;padding:14px 28px;
-    background:linear-gradient(135deg,var(--burgundy),var(--burgundy-bright));
-    color:var(--bone);font-family:'Unbounded';font-weight:800;font-size:13px;letter-spacing:.25em;
-    border:1px solid var(--gold);text-decoration:none;
-    clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
-    transition:all .15s;cursor:pointer;
+    position:relative;display:inline-flex;align-items:center;gap:10px;
+    padding:16px 30px;color:var(--bg-deep);
+    font-family:'Unbounded',sans-serif;font-weight:800;font-size:12px;letter-spacing:.2em;
+    text-decoration:none;text-transform:uppercase;cursor:pointer;border:none;
+    background:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 50%,var(--gold) 100%);
+    background-size:200% 200%;
+    box-shadow:0 0 0 1px var(--gold),0 20px 40px -10px rgba(212,175,99,.4),0 0 60px -10px rgba(212,175,99,.3);
+    clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
+    transition:transform .25s,box-shadow .25s,background-position .6s;
   }
-  .btn-primary:hover{background:linear-gradient(135deg,var(--burgundy-bright),var(--gold));color:var(--bg)}
+  .btn-primary:hover{transform:translateY(-2px);background-position:100% 100%;box-shadow:0 0 0 1px var(--gold-bright),0 25px 50px -10px rgba(212,175,99,.6),0 0 80px -10px rgba(212,175,99,.5)}
   .btn-ghost{
-    display:inline-block;padding:14px 28px;color:var(--gold);font-family:'Unbounded';
-    font-weight:700;font-size:13px;letter-spacing:.25em;border:1px solid var(--line);
-    clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
-    text-decoration:none;transition:all .15s;cursor:pointer;background:transparent;
+    display:inline-flex;align-items:center;gap:10px;padding:16px 30px;color:var(--gold);
+    font-family:'Unbounded',sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    border:1px solid var(--line-hot);background:rgba(212,175,99,.04);
+    text-decoration:none;cursor:pointer;transition:all .25s;
+    clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
   }
-  .btn-ghost:hover{border-color:var(--gold)}
+  .btn-ghost:hover{background:rgba(212,175,99,.1);border-color:var(--gold);color:var(--gold-bright)}
+  .btn-primary .arrow,.btn-ghost .arrow{transition:transform .25s}
+  .btn-primary:hover .arrow,.btn-ghost:hover .arrow{transform:translateX(4px)}
+
+  /* ── Panels ── */
   .panel{
-    background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);
+    position:relative;
+    background:linear-gradient(180deg,rgba(20,9,26,.7) 0%,rgba(30,13,40,.8) 100%);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     border:1px solid var(--line);
-    clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);
+    clip-path:polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px);
   }
+  .panel::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(135deg,rgba(212,175,99,.08) 0%,transparent 40%,transparent 60%,rgba(176,140,255,.05) 100%);
+    clip-path:inherit;opacity:0;transition:opacity .4s;
+  }
+  .panel:hover::before{opacity:1}
+
+  /* ── Emblem ── */
   .emblem{
-    width:48px;height:48px;display:grid;place-items:center;
-    background:linear-gradient(135deg,var(--burgundy),var(--burgundy-bright));
-    color:var(--gold);font-family:'Unbounded';font-weight:900;font-size:24px;
-    border:1px solid var(--gold);box-shadow:0 0 24px rgba(212,175,99,.25);
-    clip-path:polygon(20% 0,100% 0,100% 80%,80% 100%,0 100%,0 20%);
+    position:relative;width:48px;height:48px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--burgundy) 0%,var(--burgundy-bright) 50%,var(--gold) 100%);
+    color:var(--bone);font-family:'Unbounded',sans-serif;font-weight:900;font-size:22px;
+    clip-path:polygon(22% 0,100% 0,100% 78%,78% 100%,0 100%,0 22%);
+    box-shadow:0 0 30px rgba(212,175,99,.4),inset 0 0 20px rgba(0,0,0,.2);
   }
-  .hr-gold{border:none;border-top:1px solid var(--line);margin:0}
-  .price-pop{position:absolute;top:-14px;right:18px;background:var(--gold);color:var(--bg);padding:3px 10px;font-size:9px;letter-spacing:.25em;font-weight:800}
-  .check::before{content:"✓ ";color:var(--gold);font-weight:800}
-  .role-card{
-    background:var(--panel);border:1px solid var(--line);padding:18px;
-    clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+  .emblem::after{
+    content:"";position:absolute;inset:2px;border:1px solid rgba(255,255,255,.1);
+    clip-path:inherit;pointer-events:none;
   }
-  .faq summary{cursor:pointer;padding:16px 0;border-bottom:1px solid var(--line);font-weight:600;list-style:none}
-  .faq summary::after{content:"+";float:right;color:var(--gold);font-weight:900}
+
+  /* ── Scroll reveal ── */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.9,.3,1),transform .8s cubic-bezier(.2,.9,.3,1)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .reveal-delay-1{transition-delay:.1s}
+  .reveal-delay-2{transition-delay:.2s}
+  .reveal-delay-3{transition-delay:.3s}
+  .reveal-delay-4{transition-delay:.4s}
+
+  /* ── Glitch hero heading ── */
+  .glitch{position:relative;display:inline-block}
+  .glitch::before,.glitch::after{
+    content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;
+    pointer-events:none;
+  }
+  .glitch::before{animation:glitch-a 4s infinite steps(1,end);color:#5ee3ff;opacity:.0;mix-blend-mode:screen}
+  .glitch::after{animation:glitch-b 4s infinite steps(1,end);color:#ff4e84;opacity:.0;mix-blend-mode:screen}
+  @keyframes glitch-a{
+    0%,92%,100%{opacity:0;transform:translate(0)}
+    93%{opacity:.5;transform:translate(-2px,0)}
+    94%{opacity:.5;transform:translate(2px,-1px)}
+    95%{opacity:0}
+  }
+  @keyframes glitch-b{
+    0%,91%,100%{opacity:0;transform:translate(0)}
+    93%{opacity:.5;transform:translate(2px,1px)}
+    94%{opacity:.5;transform:translate(-2px,0)}
+    95%{opacity:0}
+  }
+
+  /* ── Marquee / scan line ── */
+  .scan-line{position:relative;overflow:hidden}
+  .scan-line::after{
+    content:"";position:absolute;top:-10%;left:-30%;width:50%;height:120%;
+    background:linear-gradient(90deg,transparent,rgba(212,175,99,.2),transparent);
+    transform:skewX(-20deg);animation:scan 4s infinite;pointer-events:none;
+  }
+  @keyframes scan{0%{left:-30%}100%{left:120%}}
+
+  /* ── Agent tile: 3D tilt on hover ── */
+  .agent{
+    position:relative;padding:22px 20px;
+    background:linear-gradient(180deg,rgba(20,9,26,.6) 0%,rgba(30,13,40,.75) 100%);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border:1px solid var(--line);
+    clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);
+    transition:transform .3s cubic-bezier(.2,.9,.3,1),border-color .3s,box-shadow .3s;
+    transform-style:preserve-3d;
+  }
+  .agent:hover{
+    border-color:var(--gold);
+    box-shadow:0 20px 50px -10px rgba(107,30,46,.4),0 0 40px -5px rgba(212,175,99,.25),inset 0 0 20px rgba(212,175,99,.05);
+    transform:translateY(-4px) rotateX(3deg);
+  }
+  .agent .icon{
+    font-size:32px;line-height:1;display:inline-block;
+    filter:drop-shadow(0 4px 12px rgba(212,175,99,.3));
+  }
+  .agent .name{font-family:'Unbounded';font-weight:900;font-size:13px;letter-spacing:.15em;margin-top:14px;color:var(--bone)}
+  .agent .role{font-family:'JetBrains Mono';font-weight:700;font-size:9px;letter-spacing:.25em;color:var(--gold);margin-top:3px;text-transform:uppercase}
+  .agent .blurb{font-size:12.5px;color:var(--mute);line-height:1.6;margin-top:12px}
+  .agent .pulse{
+    position:absolute;top:14px;right:14px;width:8px;height:8px;border-radius:50%;background:var(--ok);
+    box-shadow:0 0 0 0 rgba(125,216,138,.6);animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(125,216,138,.6)}
+    70%{box-shadow:0 0 0 10px rgba(125,216,138,0)}
+    100%{box-shadow:0 0 0 0 rgba(125,216,138,0)}
+  }
+
+  /* ── Pricing highlight ── */
+  .price-featured{
+    border-color:var(--gold);
+    background:linear-gradient(180deg,rgba(107,30,46,.25) 0%,rgba(20,9,26,.85) 100%);
+    box-shadow:0 30px 80px -20px rgba(212,175,99,.3),0 0 60px -20px rgba(212,175,99,.2),inset 0 0 40px rgba(212,175,99,.05);
+  }
+  .price-pop{
+    position:absolute;top:-14px;right:24px;
+    background:linear-gradient(135deg,var(--gold),var(--gold-bright));
+    color:var(--bg-deep);padding:5px 14px;font-size:9px;letter-spacing:.25em;font-weight:900;
+    font-family:'Unbounded',sans-serif;text-transform:uppercase;
+    clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);
+  }
+  .check-item{position:relative;padding-left:24px;color:var(--mute);font-size:14px;line-height:1.6}
+  .check-item::before{
+    content:"";position:absolute;left:0;top:8px;width:14px;height:14px;
+    background:linear-gradient(135deg,var(--gold),var(--gold-bright));
+    clip-path:polygon(14% 44%,0 65%,50% 100%,100% 16%,80% 0,43% 62%);
+  }
+
+  /* ── FAQ ── */
+  .faq summary{
+    cursor:pointer;padding:20px 0;border-bottom:1px solid var(--line);
+    font-weight:600;list-style:none;font-size:15px;transition:color .2s;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .faq summary:hover{color:var(--gold-bright)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{
+    content:"+";color:var(--gold);font-weight:900;font-size:18px;font-family:'Unbounded';
+    transition:transform .3s;
+  }
   .faq details[open] summary::after{content:"−"}
   .faq details[open] summary{color:var(--gold)}
-  .faq p{padding:12px 0 18px;color:var(--mute);line-height:1.7}
-  @keyframes scanglow{0%,100%{opacity:.3}50%{opacity:.8}}
-  .scan-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:scanglow 2s ease-in-out infinite;display:inline-block;margin-right:8px}
-  section{position:relative;z-index:1}
-  .migration-ribbon{
-    background:linear-gradient(90deg,var(--burgundy) 0%,var(--burgundy-bright) 50%,var(--burgundy) 100%);
+  .faq p{padding:12px 0 24px;color:var(--mute);line-height:1.75;font-size:14.5px}
+
+  /* ── HUD gridlines ── */
+  .hud-grid{
+    position:absolute;inset:0;pointer-events:none;opacity:.4;
+    background:
+      linear-gradient(to right,var(--line) 1px,transparent 1px) 0 0/80px 100%,
+      linear-gradient(to bottom,var(--line) 1px,transparent 1px) 0 0/100% 80px;
+    mask-image:radial-gradient(ellipse 1200px 600px at center,black 30%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 1200px 600px at center,black 30%,transparent 100%);
+  }
+
+  /* ── Terminal cursor ── */
+  .cursor{display:inline-block;width:.6em;height:1.1em;background:var(--gold);vertical-align:text-bottom;animation:blink 1s steps(2) infinite;margin-left:3px;transform:translateY(2px)}
+  @keyframes blink{50%{opacity:0}}
+
+  /* ── Live feed mockup ── */
+  .hud{
+    position:relative;background:linear-gradient(180deg,rgba(20,9,26,.9),rgba(10,6,16,.95));
+    border:1px solid var(--line-hot);
+    box-shadow:0 40px 100px -20px rgba(107,30,46,.5),0 0 80px -20px rgba(212,175,99,.25),inset 0 0 40px rgba(212,175,99,.03);
+    clip-path:polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px);
+  }
+  .hud-corner{position:absolute;width:24px;height:24px;border-color:var(--gold);opacity:.6}
+  .hud-corner.tl{top:0;left:0;border-top:2px solid;border-left:2px solid}
+  .hud-corner.tr{top:0;right:0;border-top:2px solid;border-right:2px solid}
+  .hud-corner.bl{bottom:0;left:0;border-bottom:2px solid;border-left:2px solid}
+  .hud-corner.br{bottom:0;right:0;border-bottom:2px solid;border-right:2px solid}
+
+  /* ── Counter stat ── */
+  .stat-num{font-family:'Unbounded',sans-serif;font-weight:900;font-size:38px;color:transparent;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 100%);-webkit-background-clip:text;background-clip:text;line-height:1}
+  .stat-label{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.25em;color:var(--mute);margin-top:8px;text-transform:uppercase}
+
+  /* ── Migration ribbon with iridescent bg ── */
+  .migration{
+    position:relative;background:linear-gradient(135deg,#2a0a2e,#1a0824,#2a0a2e);
     border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);
+    overflow:hidden;
+  }
+  .migration::before{
+    content:"";position:absolute;inset:0;
+    background:conic-gradient(from 0deg at 30% 30%,transparent 0deg,rgba(212,175,99,.3) 90deg,transparent 180deg);
+    animation:spin-slow 20s linear infinite;opacity:.4;
+  }
+
+  /* ── Utility ── */
+  .container-x{max-width:1200px;margin:0 auto;padding:0 24px}
+  section{position:relative;z-index:2}
+  .hr-line{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--line-hot),transparent);margin:0}
+
+  /* ── Nav ── */
+  nav.topnav{
+    position:sticky;top:0;z-index:100;
+    background:linear-gradient(180deg,rgba(5,3,8,.9),rgba(5,3,8,.4));
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+  }
+
+  /* ── Scroll arrow ── */
+  .scroll-indicator{
+    position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;
+    color:var(--mute);text-transform:uppercase;
+    animation:float 2s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
+
+  @media(max-width:900px){
+    .stat-num{font-size:28px}
   }
 </style>
 </head>
-<body class="antialiased">
+<body>
 
 <!-- NAV -->
-<nav class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between relative z-10">
-  <a href="#" class="flex items-center gap-3">
-    <div class="emblem">O</div>
-    <div>
-      <div class="display font-black text-lg tracking-widest">OPENCLAW</div>
-      <div class="text-[10px] tracking-[.3em] text-[color:var(--mute)]">· MARKETING TEAM IN YOUR POCKET ·</div>
+<nav class="topnav">
+  <div class="container-x flex items-center justify-between py-5">
+    <a href="#" class="flex items-center gap-3">
+      <div class="emblem">O</div>
+      <div>
+        <div class="display text-base tracking-widest">OPENCLAW</div>
+        <div class="mono text-[9px] tracking-[.3em] text-[color:var(--mute)] mt-0.5">· LOCAL · PRIVATE · YOURS ·</div>
+      </div>
+    </a>
+    <div class="hidden md:flex items-center gap-7 mono text-[11px] tracking-[.2em] text-[color:var(--mute)]">
+      <a href="#team" class="hover:text-[color:var(--gold)] transition-colors">THE TEAM</a>
+      <a href="#how" class="hover:text-[color:var(--gold)] transition-colors">HOW IT WORKS</a>
+      <a href="#pricing" class="hover:text-[color:var(--gold)] transition-colors">PRICING</a>
+      <a href="#faq" class="hover:text-[color:var(--gold)] transition-colors">FAQ</a>
+      <a href="#waitlist" class="btn-ghost" style="padding:10px 18px;font-size:10px">JOIN WAITLIST →</a>
     </div>
-  </a>
-  <div class="hidden md:flex items-center gap-6 text-xs tracking-widest text-[color:var(--mute)]">
-    <a href="#team" class="hover:text-[color:var(--gold)]">THE TEAM</a>
-    <a href="#how" class="hover:text-[color:var(--gold)]">HOW IT WORKS</a>
-    <a href="#pricing" class="hover:text-[color:var(--gold)]">PRICING</a>
-    <a href="#faq" class="hover:text-[color:var(--gold)]">FAQ</a>
-    <a href="#waitlist" class="btn-ghost" style="padding:8px 18px">JOIN WAITLIST</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="max-w-7xl mx-auto px-6 pt-12 md:pt-24 pb-20">
-  <div class="grid md:grid-cols-5 gap-10 items-center">
-    <div class="md:col-span-3">
-      <div class="kicker mb-6"><span class="scan-dot"></span>BETA · FIRST 10 SPOTS</div>
-      <h1 class="display font-black text-4xl md:text-6xl leading-[1.05] mb-6">
-        The marketing team your business <span style="color:var(--gold)">can't afford yet.</span>
-      </h1>
-      <p class="text-lg text-[color:var(--mute)] mb-8 leading-relaxed max-w-2xl">
-        Content, social, email, ads, SEO, reviews, follow-ups — all the boring stuff that compounds — running on autopilot. Built for contractors, clinics, and solo operators who know they need marketing but don't have time to post consistently, answer reviews, or chase stale quotes.
-      </p>
-      <p class="text-sm text-[color:var(--mute)] mb-8 italic">
-        Not a writer. Not a scheduler. A full 13-person team — at a fraction of what even one marketing hire would cost.
-      </p>
-      <div class="flex flex-wrap gap-4 mb-10">
-        <a href="#waitlist" class="btn-primary">⚔  GET EARLY ACCESS</a>
-        <a href="#team" class="btn-ghost">MEET THE TEAM</a>
+<section class="relative pt-20 pb-28 md:pt-28 md:pb-40">
+  <div class="hud-grid"></div>
+  <div class="container-x relative z-10">
+    <div class="grid md:grid-cols-12 gap-12 items-center">
+      <div class="md:col-span-7">
+        <div class="kicker reveal" style="display:inline-flex;align-items:center;gap:10px">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite"></span>
+          BETA · FIRST 10 SPOTS · APRIL 2026
+        </div>
+        <h1 class="display text-4xl md:text-6xl lg:text-7xl mt-8 reveal reveal-delay-1" style="line-height:1">
+          The marketing team<br/>
+          your business<br/>
+          <span class="glitch gradient-text" data-text="can't afford yet.">can't afford yet.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-[color:var(--mute)] mt-8 max-w-2xl reveal reveal-delay-2" style="line-height:1.6">
+          <span class="mono text-[color:var(--gold-bright)]">20 specialized AI agents</span> — copywriter, social manager, review responder, invoice collector, SEO writer, ads coach — running on your own computer. Publishes through your existing stack. Stays on your machine.
+        </p>
+        <p class="mono text-sm text-[color:var(--mute)] mt-5 reveal reveal-delay-2">
+          <span id="typedline"></span><span class="cursor"></span>
+        </p>
+        <div class="flex flex-wrap gap-4 mt-10 reveal reveal-delay-3">
+          <a href="#waitlist" class="btn-primary">⚔ Get Early Access <span class="arrow">→</span></a>
+          <a href="#team" class="btn-ghost">Meet the Team <span class="arrow">→</span></a>
+        </div>
+        <div class="grid grid-cols-3 gap-8 mt-14 max-w-xl reveal reveal-delay-4">
+          <div>
+            <div class="stat-num" data-target="197" data-prefix="$">$0</div>
+            <div class="stat-label">Starting price / mo</div>
+          </div>
+          <div>
+            <div class="stat-num" data-target="20">0</div>
+            <div class="stat-label">AI specialists</div>
+          </div>
+          <div>
+            <div class="stat-num" data-target="48" data-suffix="h">0h</div>
+            <div class="stat-label">To live publishing</div>
+          </div>
+        </div>
       </div>
-      <div class="grid grid-cols-3 gap-6 max-w-xl">
-        <div><div class="display text-2xl" style="color:var(--gold)">$197</div><div class="text-[10px] tracking-widest text-[color:var(--mute)] mt-1">STARTING PRICE</div></div>
-        <div><div class="display text-2xl" style="color:var(--gold)">13+</div><div class="text-[10px] tracking-widest text-[color:var(--mute)] mt-1">AI SPECIALISTS</div></div>
-        <div><div class="display text-2xl" style="color:var(--gold)">48h</div><div class="text-[10px] tracking-widest text-[color:var(--mute)] mt-1">TO LIVE PUBLISHING</div></div>
-      </div>
-    </div>
 
-    <!-- Team mockup -->
-    <div class="md:col-span-2">
-      <div class="panel p-5 font-mono text-xs">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-[color:var(--ok)]"></span>
-            <span class="tracking-widest text-[10px]" style="color:var(--gold)">YOUR TEAM · LIVE</span>
+      <!-- Command Deck Live Mockup -->
+      <div class="md:col-span-5 reveal reveal-delay-3">
+        <div class="hud p-5 mono text-xs">
+          <span class="hud-corner tl"></span><span class="hud-corner tr"></span>
+          <span class="hud-corner bl"></span><span class="hud-corner br"></span>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span style="width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite"></span>
+              <span class="mono text-[10px] tracking-[.25em]" style="color:var(--gold)">COMMAND DECK · LIVE</span>
+            </div>
+            <span class="text-[9px] text-[color:var(--mute)]">20 on shift</span>
           </div>
-          <span class="text-[10px] text-[color:var(--mute)]">8 on shift</span>
-        </div>
-        <div class="grid grid-cols-2 gap-2 mb-3">
-          <div class="role-card">
-            <div class="text-2xl mb-1">📝</div>
-            <div class="display font-black text-[10px] tracking-widest">COPYWRITER</div>
-            <div class="text-[9px] text-[color:var(--mute)]">BLOG + SOCIAL</div>
-            <div class="text-[9px]" style="color:var(--ok)">● WRITING</div>
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            <div class="agent" style="padding:12px">
+              <span class="pulse"></span>
+              <div class="text-2xl">📝</div>
+              <div class="display font-black text-[10px] tracking-[.2em] mt-2">COPYWRITER</div>
+              <div class="text-[9px] mono text-[color:var(--gold)] mt-1">LV 12 · 94%</div>
+            </div>
+            <div class="agent" style="padding:12px">
+              <span class="pulse" style="background:var(--gold)"></span>
+              <div class="text-2xl">📢</div>
+              <div class="display font-black text-[10px] tracking-[.2em] mt-2">SOCIAL-MGR</div>
+              <div class="text-[9px] mono text-[color:var(--gold)] mt-1">LV 18 · 96%</div>
+            </div>
+            <div class="agent" style="padding:12px">
+              <span class="pulse"></span>
+              <div class="text-2xl">⭐</div>
+              <div class="display font-black text-[10px] tracking-[.2em] mt-2">REVIEW-RSPD</div>
+              <div class="text-[9px] mono text-[color:var(--gold)] mt-1">LV 9 · 100%</div>
+            </div>
+            <div class="agent" style="padding:12px">
+              <span class="pulse"></span>
+              <div class="text-2xl">🎯</div>
+              <div class="display font-black text-[10px] tracking-[.2em] mt-2">INVOICE-CL</div>
+              <div class="text-[9px] mono text-[color:var(--gold)] mt-1">LV 6 · 100%</div>
+            </div>
           </div>
-          <div class="role-card">
-            <div class="text-2xl mb-1">📢</div>
-            <div class="display font-black text-[10px] tracking-widest">SOCIAL-MANAGER</div>
-            <div class="text-[9px] text-[color:var(--mute)]">FB + IG</div>
-            <div class="text-[9px]" style="color:var(--gold)">● QUEUED</div>
+          <div class="mono text-[9px] tracking-[.25em]" style="color:var(--gold)">▰▰▱ LIVE FEED</div>
+          <div id="livefeed" class="mt-3 space-y-2 text-[11px] text-[color:var(--mute)] mono">
+            <div><span style="color:var(--ok)">POSTED</span> · IG: spring cleanup offer → <span style="color:var(--gold)">142 impressions</span></div>
+            <div><span style="color:var(--ok)">SENT</span> · 4 quote follow-ups → <span style="color:var(--gold)">1 booked</span></div>
+            <div><span style="color:var(--ok)">REPLIED</span> · 2 Google reviews (5★, 4★)</div>
+            <div><span style="color:var(--ok)">PUBLISHED</span> · Blog: "Interlock vs flagstone"</div>
           </div>
-          <div class="role-card">
-            <div class="text-2xl mb-1">⭐</div>
-            <div class="display font-black text-[10px] tracking-widest">REVIEW-RESPONDER</div>
-            <div class="text-[9px] text-[color:var(--mute)]">GOOGLE + FB</div>
-            <div class="text-[9px]" style="color:var(--gold)">● 2 TO APPROVE</div>
-          </div>
-          <div class="role-card">
-            <div class="text-2xl mb-1">🎯</div>
-            <div class="display font-black text-[10px] tracking-widest">INVOICE-COLLECTOR</div>
-            <div class="text-[9px] text-[color:var(--mute)]">OVERDUE CHASER</div>
-            <div class="text-[9px]" style="color:var(--ok)">● 3 DRAFTED</div>
-          </div>
-        </div>
-        <div class="text-[9px] tracking-widest" style="color:var(--gold)">▰▰▱ TODAY</div>
-        <div class="text-[10px] space-y-1 mt-2 text-[color:var(--mute)]">
-          <div><span style="color:var(--ok)">POSTED</span> · IG: spring cleanup offer → 142 impressions</div>
-          <div><span style="color:var(--ok)">SENT</span> · 4 quote follow-ups → 1 booked</div>
-          <div><span style="color:var(--ok)">REPLIED</span> · 2 Google reviews (5★, 4★)</div>
-          <div><span style="color:var(--ok)">PUBLISHED</span> · Blog: "Interlock vs flagstone"</div>
         </div>
       </div>
     </div>
   </div>
+  <div class="scroll-indicator hidden md:block">↓ scroll to explore</div>
 </section>
 
-<hr class="hr-gold"/>
+<hr class="hr-line"/>
 
 <!-- PROBLEM -->
-<section class="max-w-7xl mx-auto px-6 py-20">
-  <div class="kicker mb-3">· THE HONEST PART ·</div>
-  <h2 class="display font-black text-3xl md:text-4xl mb-10">You already know you need marketing. You just don't have time for it.</h2>
-  <div class="grid md:grid-cols-3 gap-6">
-    <div class="panel p-6">
-      <div class="text-xs tracking-[.2em] mb-2" style="color:var(--gold)">POST-AND-GHOST</div>
-      <div class="text-[color:var(--mute)] leading-relaxed text-sm">You posted 3 times to Instagram in January. It's now April. Every time you see a competitor post you feel the guilt. You'll start again Monday. You won't.</div>
+<section class="py-24 md:py-32">
+  <div class="container-x">
+    <div class="reveal">
+      <div class="kicker">· The honest part ·</div>
+      <h2 class="display text-3xl md:text-5xl mt-5 max-w-4xl">
+        You already know you need marketing. <span class="gradient-text">You just don't have time for it.</span>
+      </h2>
     </div>
-    <div class="panel p-6">
-      <div class="text-xs tracking-[.2em] mb-2" style="color:var(--gold)">THE DISAPPEARING FREELANCER</div>
-      <div class="text-[color:var(--mute)] leading-relaxed text-sm">You hired a marketing person off Upwork. Month 1 was great. Month 2 was okay. Month 3 they ghosted and you got back to running the business. You've done this three times.</div>
+    <div class="grid md:grid-cols-3 gap-5 mt-16">
+      <div class="panel p-8 reveal">
+        <div class="mono text-[10px] tracking-[.25em] text-[color:var(--gold)] mb-3">POST · AND · GHOST</div>
+        <div class="text-[color:var(--mute)] leading-relaxed">You posted 3 times to Instagram in January. It's now April. Every time you see a competitor post, you feel the guilt. You'll start again Monday. You won't.</div>
+      </div>
+      <div class="panel p-8 reveal reveal-delay-1">
+        <div class="mono text-[10px] tracking-[.25em] text-[color:var(--gold)] mb-3">THE DISAPPEARING FREELANCER</div>
+        <div class="text-[color:var(--mute)] leading-relaxed">You hired a marketing person off Upwork. Month 1 was great. Month 2 was okay. Month 3 they ghosted. You've done this three times.</div>
+      </div>
+      <div class="panel p-8 reveal reveal-delay-2">
+        <div class="mono text-[10px] tracking-[.25em] text-[color:var(--gold)] mb-3">THE $5K / MO AGENCY</div>
+        <div class="text-[color:var(--mute)] leading-relaxed">Real agencies want $3K-$8K/mo retainers. You'd rather buy a new skidsteer. The math doesn't work for a business your size.</div>
+      </div>
     </div>
-    <div class="panel p-6">
-      <div class="text-xs tracking-[.2em] mb-2" style="color:var(--gold)">THE $5K/MO AGENCY</div>
-      <div class="text-[color:var(--mute)] leading-relaxed text-sm">Real agencies want $3K-$8K/mo retainers. You'd rather buy a new skidsteer. You know the math doesn't work for a business your size, so you keep not doing marketing.</div>
+    <div class="mt-16 reveal reveal-delay-3 text-center">
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+        OpenClaw is the middle you were waiting for.<br/>
+        <span class="gradient-text display">Agency-grade execution. Software-grade pricing.</span>
+      </p>
     </div>
-  </div>
-  <div class="mt-12 text-center">
-    <p class="text-xl text-[color:var(--bone)] max-w-3xl mx-auto leading-relaxed">
-      OpenClaw is the middle you were waiting for. <span style="color:var(--gold)">Agency-grade execution. Software-grade pricing.</span>
-    </p>
   </div>
 </section>
 
-<hr class="hr-gold"/>
+<hr class="hr-line"/>
 
-<!-- THE TEAM -->
-<section id="team" class="max-w-7xl mx-auto px-6 py-20">
-  <div class="kicker mb-3">· YOUR TEAM ·</div>
-  <h2 class="display font-black text-3xl md:text-4xl mb-6">13 specialists. One dashboard. Runs while you sleep.</h2>
-  <p class="text-lg text-[color:var(--mute)] mb-12 max-w-3xl leading-relaxed">Each one owns a specific job. Read-only roles (intel, research, triage) run autonomously. Anything that sends, posts, or publishes waits for your one-tap ✅ in Telegram or the dashboard.</p>
-
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-    <div class="role-card">
-      <div class="text-3xl mb-2">📝</div>
-      <div class="display font-black text-sm tracking-widest mb-1">COPYWRITER</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">BLOG + ARTICLE WRITER</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Weekly blog posts matched to your brand voice. SEO-aware. Ready to publish to your WordPress, Webflow, or Squarespace.</p>
+<!-- TEAM -->
+<section id="team" class="py-24 md:py-32 relative">
+  <div class="container-x">
+    <div class="reveal">
+      <div class="kicker">· YOUR TEAM ·</div>
+      <h2 class="display text-3xl md:text-5xl mt-5">13 specialists. One dashboard.<br/><span class="gradient-text">Runs while you sleep.</span></h2>
+      <p class="text-[color:var(--mute)] text-lg mt-6 max-w-3xl leading-relaxed">Each owns a specific job. Read-only agents (intel, research, triage) run autonomously. Anything that sends, posts, or publishes waits for your one-tap ✅ in Telegram.</p>
     </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">📢</div>
-      <div class="display font-black text-sm tracking-widest mb-1">SOCIAL-MANAGER</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">FB + IG PUBLISHER</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Daily posts to your Facebook Page and Instagram Business. Seasonal, local, never generic. You approve; it posts.</p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-14">
+      <!-- Agent cards -->
+      <div class="agent reveal"><span class="pulse"></span>
+        <div class="icon">📝</div><div class="name">COPYWRITER</div><div class="role">Blog + article writer</div>
+        <div class="blurb">Weekly blog posts matched to your brand voice. SEO-aware. Ready to publish to WordPress, Webflow, or Squarespace.</div>
+      </div>
+      <div class="agent reveal reveal-delay-1"><span class="pulse"></span>
+        <div class="icon">📢</div><div class="name">SOCIAL-MANAGER</div><div class="role">FB + IG publisher</div>
+        <div class="blurb">Daily posts to your Facebook Page and Instagram Business. Seasonal, local, never generic. You approve; it posts.</div>
+      </div>
+      <div class="agent reveal reveal-delay-2"><span class="pulse"></span>
+        <div class="icon">📧</div><div class="name">EMAIL-MANAGER</div><div class="role">Campaigns + newsletters</div>
+        <div class="blurb">Monthly newsletter, win-back flows, re-engagement sequences. Drafts in your Mailchimp or Klaviyo. You hit send.</div>
+      </div>
+      <div class="agent reveal"><span class="pulse"></span>
+        <div class="icon">🏹</div><div class="name">COLD-EMAILER</div><div class="role">Outreach sequences</div>
+        <div class="blurb">Personalized cold emails to prospect lists. A/B variants. Response tracking. Stops when someone replies.</div>
+      </div>
+      <div class="agent reveal reveal-delay-1"><span class="pulse"></span>
+        <div class="icon">⭐</div><div class="name">REVIEW-RESPONDER</div><div class="role">Google + FB replies</div>
+        <div class="blurb">Drafts on-brand replies to every review — especially the bad ones. Never miss a response window again.</div>
+      </div>
+      <div class="agent reveal reveal-delay-2"><span class="pulse"></span>
+        <div class="icon">📍</div><div class="name">GBP-MANAGER</div><div class="role">Google Business Profile</div>
+        <div class="blurb">Weekly GBP posts, photo uploads, Q&A answers. The local-SEO lever most competitors ignore.</div>
+      </div>
+      <div class="agent reveal"><span class="pulse"></span>
+        <div class="icon">🎯</div><div class="name">INVOICE-COLLECTOR</div><div class="role">Overdue chaser</div>
+        <div class="blurb">Drafts polite, brand-voiced follow-ups for overdue invoices. Gets you paid without the awkward phone calls.</div>
+      </div>
+      <div class="agent reveal reveal-delay-1"><span class="pulse"></span>
+        <div class="icon">🔁</div><div class="name">FOLLOW-UP SPECIALIST</div><div class="role">Quote chaser</div>
+        <div class="blurb">Sent a quote and nothing happened? It nudges the prospect on day 3, 7, and 14. Books more jobs than any human would remember to.</div>
+      </div>
+      <div class="agent reveal reveal-delay-2"><span class="pulse"></span>
+        <div class="icon">📥</div><div class="name">INBOX-MANAGER</div><div class="role">Triage + summaries</div>
+        <div class="blurb">Sorts every morning's email into urgent / needs reply / FYI / spam, with one-line reasons. Your mornings back.</div>
+      </div>
+      <div class="agent reveal"><span class="pulse"></span>
+        <div class="icon">🕵</div><div class="name">COMPETITIVE-ANALYST</div><div class="role">Watches the other guys</div>
+        <div class="blurb">Watches your top 5 competitors' sites, ads, and socials. Weekly digest of what they changed and what you should counter.</div>
+      </div>
+      <div class="agent reveal reveal-delay-1"><span class="pulse"></span>
+        <div class="icon">🧠</div><div class="name">ADS-MANAGER</div><div class="role">Meta ads audit + copy</div>
+        <div class="blurb">Audits every Meta ad before publish against the real Sales Objective Playbook. Catches policy rejections before Meta does.</div>
+      </div>
+      <div class="agent reveal reveal-delay-2"><span class="pulse"></span>
+        <div class="icon">📄</div><div class="name">LANDING-PAGE BUILDER</div><div class="role">Campaign pages on demand</div>
+        <div class="blurb">Spring promo? Lead magnet? New service? Spins up a branded, mobile-responsive landing page in an hour.</div>
+      </div>
+      <div class="agent reveal"><span class="pulse"></span>
+        <div class="icon">📈</div><div class="name">SEO-WRITER</div><div class="role">Rank for local search</div>
+        <div class="blurb">Keyword-targeted blog posts that rank for "interlock Barrie," "HVAC Aurora," or whatever your money terms are. Weekly.</div>
+      </div>
     </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">📧</div>
-      <div class="display font-black text-sm tracking-widest mb-1">EMAIL-MANAGER</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">CAMPAIGNS + NEWSLETTERS</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Monthly newsletter, win-back flows, re-engagement sequences. Drafts in your Mailchimp or Klaviyo. You hit send.</p>
+    <div class="mt-14 text-center reveal">
+      <p class="text-[color:var(--mute)]">
+        + <span class="gradient-text display">60 more specialists</span> in the full library —
+        product launchers, viral hook generators, YouTube scripts, affiliate marketers, reputation builders.
+        <a href="#pricing" class="mono text-[color:var(--gold)] underline hover:no-underline">Unlocked at Pro →</a>
+      </p>
     </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">🏹</div>
-      <div class="display font-black text-sm tracking-widest mb-1">COLD-EMAILER</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">OUTREACH SEQUENCES</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Personalized cold emails to prospect lists. A/B variants. Response tracking. Stops when someone replies.</p>
-    </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">⭐</div>
-      <div class="display font-black text-sm tracking-widest mb-1">REVIEW-RESPONDER</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">GOOGLE + FB REPLIES</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Drafts on-brand replies to every review — especially the bad ones. You approve; it posts. Never miss a response window again.</p>
-    </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">📍</div>
-      <div class="display font-black text-sm tracking-widest mb-1">GBP-MANAGER</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">GOOGLE BUSINESS PROFILE</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Weekly GBP posts, photo uploads, Q&A answers. The local-SEO lever most competitors ignore.</p>
-    </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">🎯</div>
-      <div class="display font-black text-sm tracking-widest mb-1">INVOICE-COLLECTOR</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">OVERDUE CHASER</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Drafts polite, brand-voiced follow-ups for overdue invoices. Gets you paid without the awkward phone calls.</p>
-    </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">🔁</div>
-      <div class="display font-black text-sm tracking-widest mb-1">FOLLOW-UP SPECIALIST</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">QUOTE CHASER</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Sent a quote and nothing happened? It nudges the prospect on day 3, 7, and 14. Books more jobs than any human would remember to.</p>
-    </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">📥</div>
-      <div class="display font-black text-sm tracking-widest mb-1">INBOX-MANAGER</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">TRIAGE + SUMMARIES</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Sorts every morning's email into urgent / needs reply / FYI / spam, with one-line reasons. Your mornings back.</p>
-    </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">🕵</div>
-      <div class="display font-black text-sm tracking-widest mb-1">COMPETITIVE-ANALYST</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">WATCHES THE OTHER GUYS</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Watches your top 5 competitors' sites, ads, and socials. Weekly digest of what they changed and what you should counter.</p>
-    </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">🧠</div>
-      <div class="display font-black text-sm tracking-widest mb-1">ADS-MANAGER</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">META ADS AUDIT + COPY</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Audits every Meta ad before publish against the real Sales Objective Playbook. Catches policy rejections before Meta does.</p>
-    </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">📄</div>
-      <div class="display font-black text-sm tracking-widest mb-1">LANDING-PAGE BUILDER</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">CAMPAIGN PAGES ON DEMAND</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Spring promo? Lead magnet? New service? Spins up a branded, mobile-responsive landing page in an hour. Hosted on your own site.</p>
-    </div>
-    <div class="role-card">
-      <div class="text-3xl mb-2">📈</div>
-      <div class="display font-black text-sm tracking-widest mb-1">SEO-WRITER</div>
-      <div class="text-[10px] tracking-widest mb-3" style="color:var(--gold)">RANK FOR LOCAL SEARCH</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">Keyword-targeted blog posts that rank for "interlock Barrie," "HVAC Aurora," or whatever your money terms are. Weekly.</p>
-    </div>
-  </div>
-
-  <div class="mt-10 text-center text-sm text-[color:var(--mute)]">
-    + <span style="color:var(--gold)">60 more specialists</span> in the full library — product launchers, viral hook generators, affiliate marketers, YouTube script writers, reputation builders. <a href="#pricing" style="color:var(--gold)" class="underline">Unlocked at Pro.</a>
   </div>
 </section>
 
 <!-- MIGRATION RIBBON -->
-<section class="migration-ribbon py-16 mt-10">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <div class="kicker mb-3" style="color:var(--gold-bright)">· 48-HOUR ONBOARDING ·</div>
-    <h2 class="display font-black text-3xl md:text-4xl mb-6">Start where you are. Or rebuild fresh.</h2>
-    <div class="grid md:grid-cols-2 gap-6 text-left">
-      <div class="panel p-6">
-        <div class="display text-sm tracking-widest mb-3" style="color:var(--gold)">STACK MIGRATION · INCLUDED</div>
-        <p class="text-sm text-[color:var(--mute)] leading-relaxed mb-4">Keep your WordPress, Squarespace, Webflow, or whatever you have. We plug OpenClaw in, import your brand voice from your existing content, and start publishing through your stack in 48 hours.</p>
-        <div class="text-xs text-[color:var(--bone)]">Works with WordPress, Webflow, Squarespace, Ghost, Mailchimp, Klaviyo, Meta Ads, Google Ads, Google Business.</div>
+<section class="migration py-24">
+  <div class="container-x relative text-center">
+    <div class="reveal">
+      <div class="kicker" style="color:var(--gold-bright)">· 48-HOUR ONBOARDING ·</div>
+      <h2 class="display text-3xl md:text-5xl mt-5">Start where you are. <span class="gradient-text">Or rebuild fresh.</span></h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 mt-14 text-left">
+      <div class="panel p-8 reveal">
+        <div class="mono text-[10px] tracking-[.25em] text-[color:var(--gold-bright)] mb-4">STACK MIGRATION · INCLUDED</div>
+        <p class="text-[color:var(--mute)] leading-relaxed mb-4">Keep your WordPress, Squarespace, Webflow, or whatever you have. We plug OpenClaw in, import your brand voice from your existing content, and start publishing through your stack in 48 hours.</p>
+        <div class="mono text-xs text-[color:var(--bone)]">Works with WordPress · Webflow · Squarespace · Ghost · Mailchimp · Klaviyo · Meta Ads · Google Ads · Google Business</div>
       </div>
-      <div class="panel p-6">
-        <div class="display text-sm tracking-widest mb-3" style="color:var(--gold)">FULL SITE REBUILD · $3,500</div>
-        <p class="text-sm text-[color:var(--mute)] leading-relaxed mb-4">Your site is 8 years old and shows it. We rebuild it on Webflow in 14 days, migrate your content with SEO-preserving redirects, then hand you the keys. You own everything.</p>
-        <div class="text-xs text-[color:var(--bone)]">One-time fee. You own the final site + hosting account. We keep only the monthly marketing subscription.</div>
+      <div class="panel p-8 reveal reveal-delay-1">
+        <div class="mono text-[10px] tracking-[.25em] text-[color:var(--gold-bright)] mb-4">FULL SITE REBUILD · $3,500</div>
+        <p class="text-[color:var(--mute)] leading-relaxed mb-4">Your site is 8 years old and shows it. We rebuild it on Webflow in 14 days, migrate your content with SEO-preserving redirects, then hand you the keys.</p>
+        <div class="mono text-xs text-[color:var(--bone)]">One-time fee · You own the final site + hosting · We keep only the monthly subscription</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section id="how" class="max-w-7xl mx-auto px-6 py-20">
-  <div class="kicker mb-3">· HOW IT WORKS ·</div>
-  <h2 class="display font-black text-3xl md:text-4xl mb-12">Set it up once. It works every day.</h2>
-
-  <div class="grid md:grid-cols-4 gap-5">
-    <div class="panel p-6">
-      <div class="display font-black text-2xl mb-3" style="color:var(--gold)">01</div>
-      <div class="display font-black text-sm tracking-widest mb-2">INSTALL</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">One-command install on Windows or Mac. Or we set it up for you in a 30-minute screenshare. Your choice.</p>
+<section id="how" class="py-24 md:py-32">
+  <div class="container-x">
+    <div class="reveal">
+      <div class="kicker">· HOW IT WORKS ·</div>
+      <h2 class="display text-3xl md:text-5xl mt-5">Set it up once. <span class="gradient-text">It works every day.</span></h2>
     </div>
-    <div class="panel p-6">
-      <div class="display font-black text-2xl mb-3" style="color:var(--gold)">02</div>
-      <div class="display font-black text-sm tracking-widest mb-2">CONNECT</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">OAuth into Gmail, Calendar, FB Page, IG Business, Google Business Profile, your CMS, your email tool. 10 minutes total.</p>
-    </div>
-    <div class="panel p-6">
-      <div class="display font-black text-2xl mb-3" style="color:var(--gold)">03</div>
-      <div class="display font-black text-sm tracking-widest mb-2">LEARN</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">The team reads your existing content to learn your voice. Your first drafts already sound like you on day 3. They get better from there.</p>
-    </div>
-    <div class="panel p-6">
-      <div class="display font-black text-2xl mb-3" style="color:var(--gold)">04</div>
-      <div class="display font-black text-sm tracking-widest mb-2">APPROVE</div>
-      <p class="text-xs text-[color:var(--mute)] leading-relaxed">One-tap ✅ from Telegram or your phone. Everything that posts publicly waits for you. Everything else just runs.</p>
+    <div class="grid md:grid-cols-4 gap-4 mt-16">
+      <div class="panel p-8 reveal">
+        <div class="display text-4xl gradient-text mb-4">01</div>
+        <div class="display text-sm tracking-[.15em] mb-3">INSTALL</div>
+        <p class="text-sm text-[color:var(--mute)] leading-relaxed">One-command install on Windows or Mac. Or we set it up for you on a 30-minute screenshare.</p>
+      </div>
+      <div class="panel p-8 reveal reveal-delay-1">
+        <div class="display text-4xl gradient-text mb-4">02</div>
+        <div class="display text-sm tracking-[.15em] mb-3">CONNECT</div>
+        <p class="text-sm text-[color:var(--mute)] leading-relaxed">OAuth into Gmail, Calendar, FB, IG, Google Business, your CMS, your email tool. 10 minutes total.</p>
+      </div>
+      <div class="panel p-8 reveal reveal-delay-2">
+        <div class="display text-4xl gradient-text mb-4">03</div>
+        <div class="display text-sm tracking-[.15em] mb-3">LEARN</div>
+        <p class="text-sm text-[color:var(--mute)] leading-relaxed">The team reads your existing content to learn your voice. Your first drafts already sound like you on day 3.</p>
+      </div>
+      <div class="panel p-8 reveal reveal-delay-3">
+        <div class="display text-4xl gradient-text mb-4">04</div>
+        <div class="display text-sm tracking-[.15em] mb-3">APPROVE</div>
+        <p class="text-sm text-[color:var(--mute)] leading-relaxed">One-tap ✅ from Telegram or your phone. Everything that posts publicly waits for you.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section id="pricing" class="max-w-7xl mx-auto px-6 py-20">
-  <div class="kicker mb-3">· PRICING ·</div>
-  <h2 class="display font-black text-3xl md:text-4xl mb-4">Priced like software. Acts like an agency.</h2>
-  <p class="text-[color:var(--mute)] max-w-2xl mb-12">Monthly fee. No per-post charges. No surprise bills. Cancel anytime.</p>
-
-  <div class="grid md:grid-cols-3 gap-5">
-    <!-- Starter -->
-    <div class="panel p-8 relative">
-      <div class="display font-black text-xs tracking-[.3em] mb-2">STARTER</div>
-      <div class="flex items-baseline gap-1 mb-1">
-        <div class="display font-black text-5xl">$197</div>
-        <div class="text-xs text-[color:var(--mute)]">/mo</div>
-      </div>
-      <div class="text-xs text-[color:var(--mute)] mb-6">solo operators</div>
-      <ul class="space-y-2 text-sm mb-8">
-        <li class="check">Core 10 marketing specialists</li>
-        <li class="check">1 brand / 1 business</li>
-        <li class="check">Stack migration included</li>
-        <li class="check">Email + chat support</li>
-        <li class="check">Telegram approvals</li>
-      </ul>
-      <a href="#waitlist" class="btn-ghost w-full text-center">JOIN WAITLIST</a>
+<section id="pricing" class="py-24 md:py-32">
+  <div class="container-x">
+    <div class="reveal">
+      <div class="kicker">· PRICING ·</div>
+      <h2 class="display text-3xl md:text-5xl mt-5">Priced like software. <span class="gradient-text">Acts like an agency.</span></h2>
+      <p class="text-[color:var(--mute)] text-lg max-w-2xl mt-6">Monthly fee. No per-post charges. No surprise bills. Cancel anytime.</p>
     </div>
-
-    <!-- Pro (highlighted) -->
-    <div class="panel p-8 relative" style="border-color:var(--gold);box-shadow:0 0 40px rgba(212,175,99,.15)">
-      <div class="price-pop">MOST BOOKED</div>
-      <div class="display font-black text-xs tracking-[.3em] mb-2" style="color:var(--gold)">PRO</div>
-      <div class="flex items-baseline gap-1 mb-1">
-        <div class="display font-black text-5xl">$497</div>
-        <div class="text-xs text-[color:var(--mute)]">/mo</div>
+    <div class="grid md:grid-cols-3 gap-6 mt-16">
+      <div class="panel p-10 reveal">
+        <div class="display text-[10px] tracking-[.4em] mb-3 text-[color:var(--mute)]">STARTER</div>
+        <div class="flex items-baseline gap-1 mb-2">
+          <div class="display text-6xl gradient-text">$197</div>
+          <div class="mono text-xs text-[color:var(--mute)]">/ mo</div>
+        </div>
+        <div class="mono text-[11px] text-[color:var(--mute)] mb-10">solo operators</div>
+        <ul class="space-y-3 mb-10">
+          <li class="check-item">Core 10 marketing specialists</li>
+          <li class="check-item">1 brand / 1 business</li>
+          <li class="check-item">Stack migration included</li>
+          <li class="check-item">Email + chat support</li>
+          <li class="check-item">Telegram approvals</li>
+        </ul>
+        <a href="#waitlist" class="btn-ghost w-full justify-center">Join Waitlist →</a>
       </div>
-      <div class="text-xs text-[color:var(--mute)] mb-6">real businesses, real growth</div>
-      <ul class="space-y-2 text-sm mb-8">
-        <li class="check">Everything in Starter</li>
-        <li class="check">Full 73-specialist library</li>
-        <li class="check">Brand voice learning per week</li>
-        <li class="check">Phone + priority chat support</li>
-        <li class="check">Scheduled autonomous runs</li>
-        <li class="check">Ads audits before every publish</li>
-        <li class="check">Landing pages on demand</li>
-      </ul>
-      <a href="#waitlist" class="btn-primary w-full text-center">GET EARLY ACCESS</a>
-    </div>
-
-    <!-- Agency -->
-    <div class="panel p-8 relative">
-      <div class="display font-black text-xs tracking-[.3em] mb-2">AGENCY</div>
-      <div class="flex items-baseline gap-1 mb-1">
-        <div class="display font-black text-5xl">$1,497</div>
-        <div class="text-xs text-[color:var(--mute)]">/mo</div>
+      <div class="panel price-featured p-10 relative reveal reveal-delay-1">
+        <div class="price-pop">MOST BOOKED</div>
+        <div class="display text-[10px] tracking-[.4em] mb-3" style="color:var(--gold)">PRO</div>
+        <div class="flex items-baseline gap-1 mb-2">
+          <div class="display text-6xl gradient-text">$497</div>
+          <div class="mono text-xs text-[color:var(--mute)]">/ mo</div>
+        </div>
+        <div class="mono text-[11px] text-[color:var(--mute)] mb-10">real businesses, real growth</div>
+        <ul class="space-y-3 mb-10">
+          <li class="check-item">Everything in Starter</li>
+          <li class="check-item">Full 73-specialist library</li>
+          <li class="check-item">Brand voice learning per week</li>
+          <li class="check-item">Phone + priority chat support</li>
+          <li class="check-item">Scheduled autonomous runs</li>
+          <li class="check-item">Ads audits before every publish</li>
+          <li class="check-item">Landing pages on demand</li>
+        </ul>
+        <a href="#waitlist" class="btn-primary w-full justify-center">Get Early Access →</a>
       </div>
-      <div class="text-xs text-[color:var(--mute)] mb-6">white-label reseller</div>
-      <ul class="space-y-2 text-sm mb-8">
-        <li class="check">Up to 10 client tenants</li>
-        <li class="check">Per-client brand voice</li>
-        <li class="check">White-label dashboard</li>
-        <li class="check">Onboarding training call</li>
-        <li class="check">Direct Slack support</li>
-      </ul>
-      <a href="#waitlist" class="btn-ghost w-full text-center">TALK TO FOUNDER</a>
+      <div class="panel p-10 reveal reveal-delay-2">
+        <div class="display text-[10px] tracking-[.4em] mb-3 text-[color:var(--mute)]">AGENCY</div>
+        <div class="flex items-baseline gap-1 mb-2">
+          <div class="display text-6xl gradient-text">$1,497</div>
+          <div class="mono text-xs text-[color:var(--mute)]">/ mo</div>
+        </div>
+        <div class="mono text-[11px] text-[color:var(--mute)] mb-10">white-label reseller</div>
+        <ul class="space-y-3 mb-10">
+          <li class="check-item">Up to 10 client tenants</li>
+          <li class="check-item">Per-client brand voice</li>
+          <li class="check-item">White-label dashboard</li>
+          <li class="check-item">Onboarding training call</li>
+          <li class="check-item">Direct Slack support</li>
+        </ul>
+        <a href="#waitlist" class="btn-ghost w-full justify-center">Talk to Founder →</a>
+      </div>
     </div>
+    <!-- add-ons -->
+    <div class="mt-10 panel p-8 reveal">
+      <div class="kicker mb-6">· ONE-TIME ADD-ONS ·</div>
+      <div class="grid md:grid-cols-3 gap-6 mt-2">
+        <div>
+          <div class="display text-sm tracking-[.2em] mb-2">FULL SITE REBUILD</div>
+          <div class="flex items-baseline gap-1"><div class="display text-3xl gradient-text">$3,500</div><div class="mono text-xs text-[color:var(--mute)]">one-time</div></div>
+          <p class="text-xs text-[color:var(--mute)] mt-3">Your site rebuilt on Webflow in 14 days. Content migrated. You own the final product.</p>
+        </div>
+        <div>
+          <div class="display text-sm tracking-[.2em] mb-2">OPENCLAW OSS</div>
+          <div class="flex items-baseline gap-1"><div class="display text-3xl gradient-text">$0</div><div class="mono text-xs text-[color:var(--mute)]">forever</div></div>
+          <p class="text-xs text-[color:var(--mute)] mt-3">Clone the repo. Run it yourself. Community support only. For developers + tinkerers.</p>
+        </div>
+        <div>
+          <div class="display text-sm tracking-[.2em] mb-2">DONE-FOR-YOU ONBOARDING</div>
+          <div class="flex items-baseline gap-1"><div class="display text-3xl gradient-text">$497</div><div class="mono text-xs text-[color:var(--mute)]">one-time</div></div>
+          <p class="text-xs text-[color:var(--mute)] mt-3">We install + connect every platform + train you on Zoom. Skip the DIY.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-center mono text-[10px] tracking-[.3em] text-[color:var(--mute)] mt-10">
+      OPEN-CORE · MIT LICENSED · 30-DAY MONEY-BACK · NO CONTRACTS · CANCEL ANYTIME
+    </p>
   </div>
-
-  <!-- Add-ons -->
-  <div class="mt-10 panel p-6">
-    <div class="kicker mb-3">· ONE-TIME ADD-ONS ·</div>
-    <div class="grid md:grid-cols-3 gap-5 mt-4">
-      <div>
-        <div class="display font-black text-sm tracking-widest mb-1">FULL SITE REBUILD</div>
-        <div class="flex items-baseline gap-1 mb-1">
-          <div class="display text-2xl" style="color:var(--gold)">$3,500</div>
-          <div class="text-xs text-[color:var(--mute)]">one-time</div>
-        </div>
-        <p class="text-xs text-[color:var(--mute)] mt-2">Your site rebuilt on Webflow in 14 days. Content migrated. You own the final product.</p>
-      </div>
-      <div>
-        <div class="display font-black text-sm tracking-widest mb-1">OPENCLAW OSS (SELF-HOST)</div>
-        <div class="flex items-baseline gap-1 mb-1">
-          <div class="display text-2xl" style="color:var(--gold)">$0</div>
-          <div class="text-xs text-[color:var(--mute)]">forever</div>
-        </div>
-        <p class="text-xs text-[color:var(--mute)] mt-2">Clone the repo. Run it yourself. Community support only. For developers + tinkerers.</p>
-      </div>
-      <div>
-        <div class="display font-black text-sm tracking-widest mb-1">DONE-FOR-YOU ONBOARDING</div>
-        <div class="flex items-baseline gap-1 mb-1">
-          <div class="display text-2xl" style="color:var(--gold)">$497</div>
-          <div class="text-xs text-[color:var(--mute)]">one-time</div>
-        </div>
-        <p class="text-xs text-[color:var(--mute)] mt-2">We install + connect every platform + train you on a Zoom. Skip the DIY entirely.</p>
-      </div>
-    </div>
-  </div>
-
-  <p class="text-center text-xs text-[color:var(--mute)] mt-8 tracking-widest">
-    OPEN-CORE · MIT LICENSED · 30-DAY MONEY-BACK · NO CONTRACTS · CANCEL ANYTIME
-  </p>
 </section>
 
-<hr class="hr-gold"/>
+<hr class="hr-line"/>
 
-<!-- SELF-INSTALL HELP -->
-<section class="max-w-5xl mx-auto px-6 py-16 text-center">
-  <div class="kicker mb-3">· DIY? WE'VE GOT YOU ·</div>
-  <h2 class="display font-black text-2xl md:text-3xl mb-6">Prefer to install it yourself? Read the docs. Call us. Chat now.</h2>
-  <p class="text-[color:var(--mute)] mb-8 max-w-2xl mx-auto">The Starter tier assumes you can follow a 20-minute install walkthrough. If you get stuck, we have three ways out.</p>
-  <div class="grid md:grid-cols-3 gap-4">
-    <div class="panel p-6">
-      <div class="text-3xl mb-3">📚</div>
-      <div class="display text-sm tracking-widest mb-2">DOCS</div>
-      <p class="text-xs text-[color:var(--mute)]">Step-by-step guides for Windows + Mac, OAuth setup, and every common error.</p>
+<!-- DIY HELP -->
+<section class="py-20">
+  <div class="container-x text-center">
+    <div class="reveal">
+      <div class="kicker">· DIY? WE'VE GOT YOU ·</div>
+      <h2 class="display text-2xl md:text-4xl mt-5 max-w-3xl mx-auto">Prefer to install it yourself? <span class="gradient-text">Read the docs. Chat. Call.</span></h2>
     </div>
-    <div class="panel p-6">
-      <div class="text-3xl mb-3">💬</div>
-      <div class="display text-sm tracking-widest mb-2">CHAT</div>
-      <p class="text-xs text-[color:var(--mute)]">AI support bot on every docs page. Trained on the install walkthroughs. Answers in seconds.</p>
-    </div>
-    <div class="panel p-6">
-      <div class="text-3xl mb-3">📞</div>
-      <div class="display text-sm tracking-widest mb-2">PHONE</div>
-      <p class="text-xs text-[color:var(--mute)]">Real business number. Business hours rings my cell. After-hours voicemail replied within 4 hours.</p>
+    <div class="grid md:grid-cols-3 gap-5 mt-12 max-w-4xl mx-auto">
+      <div class="panel p-8 reveal">
+        <div class="text-4xl mb-4">📚</div>
+        <div class="display text-sm tracking-[.2em] mb-3">DOCS</div>
+        <p class="text-xs text-[color:var(--mute)]">Step-by-step guides for Windows + Mac, OAuth setup, and every common error.</p>
+      </div>
+      <div class="panel p-8 reveal reveal-delay-1">
+        <div class="text-4xl mb-4">💬</div>
+        <div class="display text-sm tracking-[.2em] mb-3">CHAT</div>
+        <p class="text-xs text-[color:var(--mute)]">AI support bot on every docs page. Trained on the install walkthroughs.</p>
+      </div>
+      <div class="panel p-8 reveal reveal-delay-2">
+        <div class="text-4xl mb-4">📞</div>
+        <div class="display text-sm tracking-[.2em] mb-3">PHONE</div>
+        <p class="text-xs text-[color:var(--mute)]">Real business number. Business hours rings my cell. After-hours voicemail replied within 4 hours.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<hr class="hr-gold"/>
+<hr class="hr-line"/>
 
 <!-- FAQ -->
-<section id="faq" class="max-w-4xl mx-auto px-6 py-20 faq">
-  <div class="kicker mb-3">· FAQ ·</div>
-  <h2 class="display font-black text-3xl md:text-4xl mb-10">Questions before you decide.</h2>
-
-  <details>
-    <summary>Is this just ChatGPT with a skin on it?</summary>
-    <p>No. OpenClaw runs on local LLMs (Ollama) on your computer by default — zero cost per run. Only escalates to Claude or GPT for specific tasks that need premium reasoning, and you set a hard daily dollar cap. Most AI marketing tools bill per token with no cap. We bill flat per month.</p>
-  </details>
-  <details>
-    <summary>Will it replace a human marketer?</summary>
-    <p>If you currently have no marketer and can't afford one — yes, it replaces that gap. If you have a $5K/mo agency — it probably doesn't replace them at the strategic level, but it replaces 60-70% of the execution. Many Pro customers use it to fire their agency and keep a strategist on retainer.</p>
-  </details>
-  <details>
-    <summary>Do I need to be technical?</summary>
-    <p>Starter tier: yes, enough to follow a 20-minute install walkthrough. Pro tier: no — we install it for you on a Zoom call. If you can use Gmail and read a recipe, you can handle Pro.</p>
-  </details>
-  <details>
-    <summary>What hardware do I need?</summary>
-    <p>Minimum: 16 GB RAM and a discrete GPU with 8+ GB VRAM. Recommended: 32 GB RAM and 12+ GB VRAM (RTX 4070 or better, or an M2 Pro Mac). No GPU? You can still run with cloud escalation covering the heavy tasks — budget ~$30/mo of Claude/GPT spend.</p>
-  </details>
-  <details>
-    <summary>What if my website is hot garbage?</summary>
-    <p>Either we add content to it and make it work (Stack Migration, included in Pro), or we rebuild it on Webflow in 14 days (Site Rebuild add-on, $3,500). Either way, you own the final result. We never host your site.</p>
-  </details>
-  <details>
-    <summary>How is this different from Lindy, Relevance AI, Gumloop?</summary>
-    <p>Those are cloud-first horizontal tools priced per token — great for tech-forward startups, painful for contractors. OpenClaw runs locally, caps cloud spend, and is built for one specific kind of buyer (contractors, clinics, solo operators) with pre-wired workflows for marketing — not "build-your-own-agent" frameworks.</p>
-  </details>
-  <details>
-    <summary>What happens to my data?</summary>
-    <p>It stays on your computer. Local LLMs read and process everything on your machine. Your brand voice samples, your email contents, your client lists — never leave. The only data we store is your Stripe billing info and your waitlist email.</p>
-  </details>
-  <details>
-    <summary>Is there a free trial?</summary>
-    <p>30-day money-back, no-questions-asked refund. Or use the self-host OSS version forever at $0 (community support only). You're never forced to pay to try it.</p>
-  </details>
-  <details>
-    <summary>When does it ship?</summary>
-    <p>Private beta is running now with Golden Maple Landscaping (Barrie, ON). Public beta opens June 2026 in batches of 10. Join the waitlist to get an install invite — regulated SMBs (legal, healthcare, accounting) and Ontario contractors are prioritized.</p>
-  </details>
-  <details>
-    <summary>Can I see the code?</summary>
-    <p>Yes — the core is MIT-licensed and will be on GitHub before public beta. Self-host it, fork it, audit it. The commercial tiers fund the roadmap, hosted updates, and support.</p>
-  </details>
+<section id="faq" class="py-24 md:py-32 faq">
+  <div class="container-x max-w-4xl">
+    <div class="reveal">
+      <div class="kicker">· FAQ ·</div>
+      <h2 class="display text-3xl md:text-5xl mt-5">Questions before <span class="gradient-text">you decide.</span></h2>
+    </div>
+    <div class="mt-12 reveal">
+      <details><summary>Is this just ChatGPT with a skin on it?</summary><p>No. OpenClaw runs on local LLMs (Ollama) on your computer by default — zero cost per run. Only escalates to Claude or GPT for specific tasks that need premium reasoning, and you set a hard daily dollar cap. Most AI marketing tools bill per token with no cap. We bill flat per month.</p></details>
+      <details><summary>Will it replace a human marketer?</summary><p>If you currently have no marketer and can't afford one — yes, it replaces that gap. If you have a $5K/mo agency — it probably doesn't replace them at the strategic level, but it replaces 60-70% of the execution. Many Pro customers use it to fire their agency and keep a strategist on retainer.</p></details>
+      <details><summary>Do I need to be technical?</summary><p>Starter tier: yes, enough to follow a 20-minute install walkthrough. Pro tier: no — we install it for you on a Zoom call. If you can use Gmail and read a recipe, you can handle Pro.</p></details>
+      <details><summary>What hardware do I need?</summary><p>Minimum: 16 GB RAM and a discrete GPU with 8+ GB VRAM. Recommended: 32 GB RAM and 12+ GB VRAM (RTX 4070 or better, or an M2 Pro Mac). No GPU? You can still run with cloud escalation covering heavy tasks — budget ~$30/mo of Claude/GPT spend.</p></details>
+      <details><summary>What if my website is hot garbage?</summary><p>Either we add content to it and make it work (Stack Migration, included in Pro), or we rebuild it on Webflow in 14 days (Site Rebuild add-on, $3,500). Either way, you own the final result. We never host your site.</p></details>
+      <details><summary>How is this different from Lindy, Relevance AI, Gumloop?</summary><p>Those are cloud-first horizontal tools priced per token — great for tech-forward startups, painful for contractors. OpenClaw runs locally, caps cloud spend, and is built for one specific kind of buyer (contractors, clinics, solo operators) with pre-wired workflows for marketing — not "build-your-own-agent" frameworks.</p></details>
+      <details><summary>What happens to my data?</summary><p>It stays on your computer. Local LLMs read and process everything on your machine. Your brand voice samples, your email contents, your client lists — never leave. The only data we store is your Stripe billing info and your waitlist email.</p></details>
+      <details><summary>Is there a free trial?</summary><p>30-day money-back, no-questions-asked refund. Or use the self-host OSS version forever at $0 (community support only). You're never forced to pay to try it.</p></details>
+      <details><summary>When does it ship?</summary><p>Private beta is running now with Golden Maple Landscaping (Barrie, ON). Public beta opens June 2026 in batches of 10. Join the waitlist to get an install invite — regulated SMBs (legal, healthcare, accounting) and Ontario contractors are prioritized.</p></details>
+      <details><summary>Can I see the code?</summary><p>Yes — the core is MIT-licensed and will be on GitHub before public beta. Self-host it, fork it, audit it. The commercial tiers fund the roadmap, hosted updates, and support.</p></details>
+    </div>
+  </div>
 </section>
 
 <!-- WAITLIST -->
-<section id="waitlist" class="max-w-3xl mx-auto px-6 py-24 text-center">
-  <div class="panel p-10">
-    <div class="kicker mb-4">· EARLY ACCESS ·</div>
-    <h2 class="display font-black text-3xl md:text-5xl mb-4 leading-tight">Get in line for<br/>the next batch.</h2>
-    <p class="text-[color:var(--mute)] mb-8 max-w-xl mx-auto">We onboard in batches of 10 so the install runs clean on your hardware. Tell us about your business and we'll prioritize Ontario contractors, clinics, and regulated SMBs.</p>
-    <form name="waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="waitlist-form" class="flex flex-col gap-3 max-w-md mx-auto">
-      <input type="hidden" name="form-name" value="waitlist"/>
-      <p class="hidden"><label>Don't fill this out: <input name="bot-field"/></label></p>
-      <input type="email" name="email" required placeholder="you@yourbusiness.com" class="w-full bg-[color:var(--bg)] border border-[color:var(--line)] px-4 py-3 text-sm outline-none focus:border-[color:var(--gold)] font-mono" />
-      <select name="industry" required class="w-full bg-[color:var(--bg)] border border-[color:var(--line)] px-4 py-3 text-sm outline-none focus:border-[color:var(--gold)] font-mono">
-        <option value="">— your industry —</option>
-        <option>Landscaping / Hardscape</option>
-        <option>HVAC / Plumbing / Electrical</option>
-        <option>Roofing / Exterior</option>
-        <option>Legal / Accounting</option>
-        <option>Healthcare / Clinic</option>
-        <option>Agency (marketing/SEO/PR)</option>
-        <option>Real Estate</option>
-        <option>Financial / Wealth</option>
-        <option>Other</option>
-      </select>
-      <input type="text" name="business" placeholder="business name (optional)" class="w-full bg-[color:var(--bg)] border border-[color:var(--line)] px-4 py-3 text-sm outline-none focus:border-[color:var(--gold)] font-mono" />
-      <button type="submit" class="btn-primary">⚔  JOIN THE WAITLIST</button>
-    </form>
-    <div id="waitlist-ok" class="hidden mt-6 text-sm" style="color:var(--ok)">✓ You're on the list. We'll email you when your install slot opens.</div>
-    <p class="text-[10px] tracking-widest text-[color:var(--mute)] mt-8">NO SPAM · ONE EMAIL WHEN YOUR SLOT OPENS · UNSUBSCRIBE ANY TIME</p>
+<section id="waitlist" class="py-24 md:py-32">
+  <div class="container-x max-w-3xl">
+    <div class="panel p-10 md:p-14 text-center relative overflow-hidden reveal">
+      <div class="hud-grid" style="opacity:.15"></div>
+      <div class="relative z-10">
+        <div class="kicker">· EARLY ACCESS ·</div>
+        <h2 class="display text-3xl md:text-5xl mt-5 leading-tight">Get in line for <span class="gradient-text">the next batch.</span></h2>
+        <p class="text-[color:var(--mute)] mt-6 max-w-xl mx-auto">We onboard in batches of 10 so the install runs clean on your hardware. Ontario contractors, clinics, and regulated SMBs get priority.</p>
+        <form name="waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="waitlist-form" class="flex flex-col gap-3 max-w-md mx-auto mt-8">
+          <input type="hidden" name="form-name" value="waitlist"/>
+          <p class="hidden"><label>Don't fill this out: <input name="bot-field"/></label></p>
+          <input type="email" name="email" required placeholder="you@yourbusiness.com" class="w-full mono text-sm px-5 py-4 outline-none" style="background:rgba(10,6,16,.8);border:1px solid var(--line);color:var(--bone);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)"/>
+          <select name="industry" required class="w-full mono text-sm px-5 py-4 outline-none" style="background:rgba(10,6,16,.8);border:1px solid var(--line);color:var(--bone);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)">
+            <option value="">— your industry —</option>
+            <option>Landscaping / Hardscape</option>
+            <option>HVAC / Plumbing / Electrical</option>
+            <option>Roofing / Exterior</option>
+            <option>Legal / Accounting</option>
+            <option>Healthcare / Clinic</option>
+            <option>Agency (marketing/SEO/PR)</option>
+            <option>Real Estate</option>
+            <option>Financial / Wealth</option>
+            <option>Other</option>
+          </select>
+          <input type="text" name="business" placeholder="business name (optional)" class="w-full mono text-sm px-5 py-4 outline-none" style="background:rgba(10,6,16,.8);border:1px solid var(--line);color:var(--bone);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)"/>
+          <button type="submit" class="btn-primary w-full justify-center mt-2">⚔ Join the Waitlist →</button>
+        </form>
+        <div id="waitlist-ok" class="hidden mt-8 text-sm mono" style="color:var(--ok)">✓ You're on the list. We'll email you when your install slot opens.</div>
+        <p class="mono text-[10px] tracking-[.3em] text-[color:var(--mute)] mt-10">NO SPAM · ONE EMAIL WHEN YOUR SLOT OPENS · UNSUBSCRIBE ANY TIME</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="border-t border-[color:var(--line)] max-w-7xl mx-auto mt-10 px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] tracking-widest text-[color:var(--mute)]">
-  <div class="flex items-center gap-3">
-    <div class="emblem" style="width:32px;height:32px;font-size:16px">O</div>
-    <div>OPENCLAW · © 2026 · BUILT IN BARRIE, ON</div>
-  </div>
-  <div class="flex gap-6 flex-wrap justify-center">
-    <a href="https://github.com/yorkisestevez/openclaw" class="hover:text-[color:var(--gold)]">GITHUB</a>
-    <a href="/docs" class="hover:text-[color:var(--gold)]">DOCS</a>
-    <a href="tel:+1" class="hover:text-[color:var(--gold)]">☎ PHONE</a>
-    <a href="mailto:openclaw@yorkisestevez.com" class="hover:text-[color:var(--gold)]">EMAIL</a>
-    <a href="https://yorkisestevez.com" class="hover:text-[color:var(--gold)]">BUILT BY YORKIS</a>
+<footer class="mt-10 py-12 border-t border-[color:var(--line)]">
+  <div class="container-x flex flex-col md:flex-row items-center justify-between gap-6 mono text-[10px] tracking-[.25em] text-[color:var(--mute)]">
+    <div class="flex items-center gap-3">
+      <div class="emblem" style="width:32px;height:32px;font-size:15px">O</div>
+      <div>OPENCLAW · © 2026 · BUILT IN BARRIE, ON</div>
+    </div>
+    <div class="flex gap-6 flex-wrap justify-center">
+      <a href="https://github.com/yorkisestevez/openclaw" class="hover:text-[color:var(--gold)] transition-colors">GITHUB</a>
+      <a href="/docs" class="hover:text-[color:var(--gold)] transition-colors">DOCS</a>
+      <a href="mailto:openclaw@yorkisestevez.com" class="hover:text-[color:var(--gold)] transition-colors">EMAIL</a>
+      <a href="https://yorkisestevez.com" class="hover:text-[color:var(--gold)] transition-colors">BUILT BY YORKIS</a>
+    </div>
   </div>
 </footer>
 
 <script src="/chat-widget.js" defer></script>
 <script>
-  // Netlify Forms handles the POST natively. This script just progressively enhances:
-  // if we're on Netlify (form POSTs to /) replace the redirect with a smooth in-page confirm.
-  const form = document.getElementById('waitlist-form');
-  const ok = document.getElementById('waitlist-ok');
-  form.addEventListener('submit', async (e) => {
-    // If Netlify is handling it, the browser will redirect. But we prefer AJAX for UX.
-    e.preventDefault();
-    const fd = new FormData(form);
-    const body = new URLSearchParams(fd).toString();
-    try {
-      // This succeeds on Netlify; falls through locally.
-      await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
-    } catch {}
-    // Always store locally as a safety net so no signup is ever lost during launch.
-    try {
-      const list = JSON.parse(localStorage.getItem('openclaw_waitlist') || '[]');
-      list.push({ email: fd.get('email'), industry: fd.get('industry'), business: fd.get('business') || '', ts: new Date().toISOString() });
-      localStorage.setItem('openclaw_waitlist', JSON.stringify(list));
-    } catch {}
-    form.style.display = 'none';
-    ok.classList.remove('hidden');
-  });
+  // ── Typed hero subline ──
+  (function(){
+    const el=document.getElementById('typedline');if(!el)return;
+    const lines=[
+      '$ node orchestrator.js --mode=autonomous',
+      '$ dispatched 20 agents. 5 emails sent. 2 demos booked.',
+      '$ copywriter posted weekly blog to wordpress.',
+      '$ review-responder replied to 4 google reviews.',
+      '$ system OK. standing by for next mission.',
+    ];
+    let i=0,j=0,line='',typing=true;
+    function tick(){
+      const cur=lines[i];
+      if(typing){
+        line=cur.slice(0,++j);
+        el.textContent=line;
+        if(j>=cur.length){typing=false;setTimeout(tick,1800);return}
+        setTimeout(tick,28+Math.random()*30);
+      } else {
+        line=cur.slice(0,--j);
+        el.textContent=line;
+        if(j<=0){typing=true;i=(i+1)%lines.length;setTimeout(tick,400);return}
+        setTimeout(tick,12);
+      }
+    }
+    tick();
+  })();
+
+  // ── Scroll-reveal ──
+  (function(){
+    const io=new IntersectionObserver(es=>{
+      es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+    },{threshold:.12,rootMargin:'0px 0px -10% 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  })();
+
+  // ── Counter animation ──
+  (function(){
+    const io=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(!e.isIntersecting)return;
+        const el=e.target;
+        const target=parseInt(el.dataset.target||'0',10);
+        const prefix=el.dataset.prefix||'';
+        const suffix=el.dataset.suffix||'';
+        const duration=1400;
+        const start=performance.now();
+        function frame(now){
+          const t=Math.min(1,(now-start)/duration);
+          const eased=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+          const val=Math.floor(eased*target);
+          el.textContent=prefix+val.toLocaleString()+suffix;
+          if(t<1)requestAnimationFrame(frame); else el.textContent=prefix+target.toLocaleString()+suffix;
+        }
+        requestAnimationFrame(frame);
+        io.unobserve(el);
+      });
+    },{threshold:.4});
+    document.querySelectorAll('.stat-num').forEach(el=>io.observe(el));
+  })();
+
+  // ── 3D tilt on agent cards ──
+  (function(){
+    const cards=document.querySelectorAll('.agent');
+    cards.forEach(card=>{
+      card.addEventListener('mousemove',e=>{
+        const r=card.getBoundingClientRect();
+        const x=(e.clientX-r.left)/r.width-.5;
+        const y=(e.clientY-r.top)/r.height-.5;
+        card.style.transform=`translateY(-4px) perspective(800px) rotateY(${x*6}deg) rotateX(${-y*5}deg)`;
+      });
+      card.addEventListener('mouseleave',()=>{card.style.transform=''});
+    });
+  })();
+
+  // ── Live feed auto-scroll with new entries ──
+  (function(){
+    const el=document.getElementById('livefeed');if(!el)return;
+    const entries=[
+      '<span style="color:var(--ok)">DRAFTED</span> · 3 invoice chasers → queued for approval',
+      '<span style="color:var(--ok)">CLASSIFIED</span> · 12 inbox items (2 urgent, 8 info, 2 spam)',
+      '<span style="color:var(--ok)">SCRAPED</span> · 10 new Ontario prospects added',
+      '<span style="color:var(--ok)">POSTED</span> · GBP: "Spring cleanup starting next week"',
+      '<span style="color:var(--ok)">BRIEFED</span> · 3 meetings prep drafts ready',
+      '<span style="color:var(--ok)">WRITTEN</span> · SEO blog: "Interlock vs flagstone"',
+      '<span style="color:var(--ok)">FOLLOWED</span> · 6 stale quotes nudged via Telegram',
+    ];
+    let idx=0;
+    setInterval(()=>{
+      const line=document.createElement('div');
+      line.innerHTML=entries[idx%entries.length];
+      line.style.opacity='0';line.style.transform='translateY(-6px)';line.style.transition='opacity .4s,transform .4s';
+      el.insertBefore(line,el.firstChild);
+      requestAnimationFrame(()=>{line.style.opacity='1';line.style.transform='translateY(0)'});
+      if(el.children.length>5){
+        const last=el.lastElementChild;
+        last.style.opacity='0';
+        setTimeout(()=>last.remove(),400);
+      }
+      idx++;
+    },3500);
+  })();
+
+  // ── Waitlist form progressive enhancement ──
+  (function(){
+    const form=document.getElementById('waitlist-form');
+    const ok=document.getElementById('waitlist-ok');
+    if(!form)return;
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const fd=new FormData(form);
+      const body=new URLSearchParams(fd).toString();
+      try{await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});}catch{}
+      try{
+        const list=JSON.parse(localStorage.getItem('openclaw_waitlist')||'[]');
+        list.push({email:fd.get('email'),industry:fd.get('industry'),business:fd.get('business')||'',ts:new Date().toISOString()});
+        localStorage.setItem('openclaw_waitlist',JSON.stringify(list));
+      }catch{}
+      form.style.display='none';ok.classList.remove('hidden');
+    });
+  })();
 </script>
 </body>
 </html>
